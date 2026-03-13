@@ -1,4 +1,4 @@
-# Autonomous Development Constitution (ADC)
+﻿# Autonomous Development Constitution (ADC)
 
 **Version:** 1.0.0  
 **Status:** Draft  
@@ -72,13 +72,7 @@ Here is the standard structure of a `.adc/` directory:
     └── skills/               # [Optional] Instruction sets and executable scripts providing specialized actions for AI Agents.
         └── your-skill/       # Example of a specific domain skill.
             ├── SKILL.md      # Actionable instructions for the AI on how to perform this specific task.
-            └── scripts/      # Utility scripts the AI can execute.��   ├── done/
-│   ├── in-progress/
-│   └── todo/
-│       └── TASK-001.md
-└── diagrams/           # [Required] Living architecture and flow diagrams. MUST be auto-updated by AI on code changes.
-    ├── architecture.mmd
-    └── data-flow.mmd
+            └── scripts/      # Utility scripts the AI can execute.
 
 .adcignore              # [Optional] Specifies files/directories that AI Assistants MUST ignore when reading context.
 .cursorrules            # [Required] Standard IDE trigger pointer for Cursor to initialize the AI on the .adc guidelines.
