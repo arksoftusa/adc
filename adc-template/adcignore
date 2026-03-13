@@ -6,5 +6,5 @@ build/
 coverage/
 tmp/
 logs/
-scratchpad/
-tasks/
+agent-workspace/scratchpad/
+agent-workspace/tasks/

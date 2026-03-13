@@ -24,41 +24,55 @@ Here is the standard structure of a `.adc/` directory:
 
 ```text
 .adc/
-├── index.md            # [Required] Core context entry point, containing global architecture and basic info.
-├── bootstrap.md        # [Required] Exact terminal commands to install dependencies, run DBs, and start local dev servers.
-├── status.md           # [Required] Current project phase, active goals, and recent major changes.
-├── project-roadmap.md  # [Required] High-level project timeline, milestones, and strategic objectives.
-├── development-phases.md # [Required] Detailed breakdown of implementation phases and current sprint focus.
-├── prompt-rules.md     # [Required] Dedicated system prompt rules and mandatory instructions for AI assistants.
-├── glossary.md         # [Required] Domain-specific vocabulary to eliminate misunderstandings (Jargon).
-├── known-issues.md     # [Required] Technical debt, legacy code warnings, and areas the AI should NOT refactor.
-├── conventions/        # [Optional] Directory containing specific coding conventions split by domain.
-│   ├── structure.md    # Project layout rules (src, docs, dist) and .env management.
-│   ├── frontend.md     # Frontend component/styling conventions.
-│   ├── backend.md      # Backend API design/database conventions.
-│   ├── data-engineering.md # Database schemas, caching (Redis), message queues, and vector DB rules.
-│   ├── performance.md  # Performance budgets, Big-O limits, and optimization strategies.
-│   ├── observability.md # Logging formats, metrics, and distributed tracing rules.
-│   ├── security.md     # Secure coding practices, CVE/CVSS limits, and vulnerability management.
-│   ├── devops.md       # Docker, CI/CD, and deployment conventions (e.g., container constraints).
-│   └── testing.md      # Strict testing guidelines (unit/e2e coverage, mocking rules).
-├── adr/                # [Optional] Architecture Decision Records (why certain approaches were chosen/rejected).
-│   └── 001-why-we-use-redis.md
-├── amendments.md       # [Required] The formal protocol and history of modifications made to this Digital Constitution.
-├── skills/             # [Optional] Instruction sets and executable scripts providing specialized actions for AI Agents.
-│   └── your-skill/     # Example of a specific domain skill.
-│       ├── SKILL.md    # Actionable instructions for the AI on how to perform this specific task.
-│       └── scripts/    # Utility scripts the AI can execute.
-├── mcp/                # [Required] Model Context Protocol (MCP) server configurations specific to this project.
-│   └── mcp-servers.json # Configuration file to load project-specific MCP servers automatically.
-├── checklists/         # [Optional] Pre-flight checklists the AI must complete before specific actions (e.g., PR creation).
-│   └── pr-review.md    # Example: Code review checklist.
-├── runbooks/           # [Optional] Troubleshooting guides and recovery procedures for common local/CI errors.
-│   └── 001-common-errors.md
-├── scratchpad/         # [Required] Ignored directory for agent memory (Brain Dump) and session handover context.
-│   └── session.md
-├── tasks/              # [Optional] Atomic task management queue for tracking multi-agent or multi-step execution.
-│   ├── done/
+├── index.md                  # [Required] Core context entry point, containing global architecture and basic info.
+├── prompt-rules.md           # [Required] Dedicated system prompt rules and mandatory instructions for AI assistants.
+├── bootstrap.md              # [Required] Exact terminal commands to install dependencies, run DBs, and start local dev servers.
+│
+├── planning/                 # [Project Management Domain]
+│   ├── status.md             # [Required] Current project phase, active goals, and recent major changes.
+│   ├── project-roadmap.md    # [Required] High-level project timeline, milestones, and strategic objectives.
+│   └── development-phases.md # [Required] Detailed breakdown of implementation phases and current sprint focus.
+│
+├── standards/                # [Specifications & Conventions Domain]
+│   ├── conventions/          # [Optional] Directory containing specific coding conventions split by domain.
+│   │   ├── structure.md      # Project layout rules (src, docs, dist) and .env management.
+│   │   ├── frontend.md       # Frontend component/styling conventions.
+│   │   ├── backend.md        # Backend API design/database conventions.
+│   │   ├── data-engineering.md # Database schemas, caching (Redis), message queues, and vector DB rules.
+│   │   ├── performance.md    # Performance budgets, Big-O limits, and optimization strategies.
+│   │   ├── observability.md  # Logging formats, metrics, and distributed tracing rules.
+│   │   ├── security.md       # Secure coding practices, CVE/CVSS limits, and vulnerability management.
+│   │   ├── devops.md         # Docker, CI/CD, and deployment conventions (e.g., container constraints).
+│   │   └── testing.md        # Strict testing guidelines (unit/e2e coverage, mocking rules).
+│   ├── checklists/           # [Optional] Pre-flight checklists the AI must complete before specific actions (e.g., PR creation).
+│   │   └── pr-review.md      # Example: Code review checklist.
+│   └── runbooks/             # [Optional] Troubleshooting guides and recovery procedures for common local/CI errors.
+│       └── 001-common-errors.md
+│
+├── knowledge/                # [Persistent Knowledge Domain]
+│   ├── glossary.md           # [Required] Domain-specific vocabulary to eliminate misunderstandings (Jargon).
+│   ├── known-issues.md       # [Required] Technical debt, legacy code warnings, and areas the AI should NOT refactor.
+│   ├── amendments.md         # [Required] The formal protocol and history of modifications made to this Digital Constitution.
+│   ├── adr/                  # [Optional] Architecture Decision Records (why certain approaches were chosen/rejected).
+│   │   └── 001-why-we-use-redis.md
+│   └── diagrams/             # [Required] Living architecture and flow diagrams. MUST be auto-updated by AI on code changes.
+│       ├── architecture.mmd
+│       └── data-flow.mmd
+│
+└── agent-workspace/          # [Dynamic AI Agent Workspace]
+    ├── tasks/                # [Optional] Atomic task management queue for tracking multi-agent or multi-step execution.
+    │   ├── done/
+    │   ├── in-progress/
+    │   └── todo/
+    │       └── TASK-001.md
+    ├── scratchpad/           # [Required] Ignored directory for agent memory (Brain Dump) and session handover context.
+    │   └── session.md
+    ├── mcp/                  # [Required] Model Context Protocol (MCP) server configurations specific to this project.
+    │   └── mcp-servers.json  # Configuration file to load project-specific MCP servers automatically.
+    └── skills/               # [Optional] Instruction sets and executable scripts providing specialized actions for AI Agents.
+        └── your-skill/       # Example of a specific domain skill.
+            ├── SKILL.md      # Actionable instructions for the AI on how to perform this specific task.
+            └── scripts/      # Utility scripts the AI can execute.��   ├── done/
 │   ├── in-progress/
 │   └── todo/
 │       └── TASK-001.md
@@ -267,7 +281,7 @@ Inject the following directive into your Agent's System Prompt or Core Instructi
 Run the following command in your terminal to generate the barebones ADC structure for an existing codebase:
 
 ```bash
-mkdir -p .adc/conventions .adc/diagrams .adc/skills .adc/adr .adc/mcp .adc/checklists .adc/runbooks .adc/tasks/todo .adc/tasks/in-progress .adc/tasks/done .adc/scratchpad tests .github
-touch .adc/index.md .adc/bootstrap.md .adc/status.md .adc/project-roadmap.md .adc/development-phases.md .adc/prompt-rules.md .adc/glossary.md .adc/known-issues.md .adc/amendments.md .adc/conventions/structure.md .adc/conventions/frontend.md .adc/conventions/backend.md .adc/conventions/data-engineering.md .adc/conventions/performance.md .adc/conventions/observability.md .adc/conventions/security.md .adc/conventions/devops.md .adc/conventions/testing.md .adc/mcp/mcp-servers.json .adc/checklists/pr-review.md .adc/runbooks/001-common-errors.md .adc/scratchpad/session.md .adc/tasks/todo/TASK-001.md .adcignore .cursorrules .windsurfrules .clinerules .roomadesrules .aider.rules .codexrules .antigravityrules .codeiumrules .codyrules .github/copilot-instructions.md
+mkdir -p .adc/planning .adc/standards/conventions .adc/standards/checklists .adc/standards/runbooks .adc/knowledge/adr .adc/knowledge/diagrams .adc/agent-workspace/skills .adc/agent-workspace/mcp .adc/agent-workspace/tasks/todo .adc/agent-workspace/tasks/in-progress .adc/agent-workspace/tasks/done .adc/agent-workspace/scratchpad tests .github
+touch .adc/index.md .adc/bootstrap.md .adc/prompt-rules.md .adc/planning/status.md .adc/planning/project-roadmap.md .adc/planning/development-phases.md .adc/knowledge/glossary.md .adc/knowledge/known-issues.md .adc/knowledge/amendments.md .adc/standards/conventions/structure.md .adc/standards/conventions/frontend.md .adc/standards/conventions/backend.md .adc/standards/conventions/data-engineering.md .adc/standards/conventions/performance.md .adc/standards/conventions/observability.md .adc/standards/conventions/security.md .adc/standards/conventions/devops.md .adc/standards/conventions/testing.md .adc/agent-workspace/mcp/mcp-servers.json .adc/standards/checklists/pr-review.md .adc/standards/runbooks/001-common-errors.md .adc/agent-workspace/scratchpad/session.md .adc/agent-workspace/tasks/todo/TASK-001.md .adcignore .cursorrules .windsurfrules .clinerules .roomadesrules .aider.rules .codexrules .antigravityrules .codeiumrules .codyrules .github/copilot-instructions.md
 ```
 Populate these files with the core essence and rules of your project to achieve peak synergy with AI coding assistants.
