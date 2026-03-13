@@ -67,8 +67,16 @@ Here is the standard structure of a `.adc/` directory:
     └── data-flow.mmd
 
 .adcignore              # [Optional] Specifies files/directories that AI Assistants MUST ignore when reading context.
-.cursorrules            # [Required] Standard IDE trigger pointer to initialize the AI on the .adc guidelines.
-.windsurfrules          # [Required] Standard IDE trigger pointer to initialize the AI on the .adc guidelines.
+.cursorrules            # [Required] Standard IDE trigger pointer for Cursor to initialize the AI on the .adc guidelines.
+.windsurfrules          # [Required] Standard IDE trigger pointer for Windsurf.
+.clinerules             # [Required] Standard IDE trigger pointer for Cline/Claude Dev.
+.roomadesrules          # [Required] Standard IDE trigger pointer for Roo Code/Roo Cline.
+.aider.rules            # [Required] Standard IDE trigger pointer for Aider.
+.codexrules             # [Required] Standard IDE trigger pointer for Codex / traditional OpenAI agents.
+.antigravityrules       # [Required] Standard IDE trigger pointer for DeepMind Antigravity and advanced web agents.
+.codeiumrules           # [Required] Standard IDE trigger pointer for Codeium.
+.codyrules              # [Required] Standard IDE trigger pointer for Sourcegraph Cody.
+.github/copilot-instructions.md # [Required] Trigger pointer for GitHub Copilot.
 ```
 
 ---
@@ -259,7 +267,7 @@ Inject the following directive into your Agent's System Prompt or Core Instructi
 Run the following command in your terminal to generate the barebones ADC structure for an existing codebase:
 
 ```bash
-mkdir -p .adc/conventions .adc/diagrams .adc/skills .adc/adr .adc/mcp .adc/checklists .adc/runbooks .adc/tasks/todo .adc/tasks/in-progress .adc/tasks/done .adc/scratchpad tests
-touch .adc/index.md .adc/bootstrap.md .adc/status.md .adc/project-roadmap.md .adc/development-phases.md .adc/prompt-rules.md .adc/glossary.md .adc/known-issues.md .adc/amendments.md .adc/conventions/structure.md .adc/conventions/frontend.md .adc/conventions/backend.md .adc/conventions/data-engineering.md .adc/conventions/performance.md .adc/conventions/observability.md .adc/conventions/security.md .adc/conventions/devops.md .adc/conventions/testing.md .adc/mcp/mcp-servers.json .adc/checklists/pr-review.md .adc/runbooks/001-common-errors.md .adc/scratchpad/session.md .adc/tasks/todo/TASK-001.md .adcignore .cursorrules .windsurfrules .clinerules .roomadesrules
+mkdir -p .adc/conventions .adc/diagrams .adc/skills .adc/adr .adc/mcp .adc/checklists .adc/runbooks .adc/tasks/todo .adc/tasks/in-progress .adc/tasks/done .adc/scratchpad tests .github
+touch .adc/index.md .adc/bootstrap.md .adc/status.md .adc/project-roadmap.md .adc/development-phases.md .adc/prompt-rules.md .adc/glossary.md .adc/known-issues.md .adc/amendments.md .adc/conventions/structure.md .adc/conventions/frontend.md .adc/conventions/backend.md .adc/conventions/data-engineering.md .adc/conventions/performance.md .adc/conventions/observability.md .adc/conventions/security.md .adc/conventions/devops.md .adc/conventions/testing.md .adc/mcp/mcp-servers.json .adc/checklists/pr-review.md .adc/runbooks/001-common-errors.md .adc/scratchpad/session.md .adc/tasks/todo/TASK-001.md .adcignore .cursorrules .windsurfrules .clinerules .roomadesrules .aider.rules .codexrules .antigravityrules .codeiumrules .codyrules .github/copilot-instructions.md
 ```
 Populate these files with the core essence and rules of your project to achieve peak synergy with AI coding assistants.
