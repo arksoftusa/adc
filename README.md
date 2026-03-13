@@ -72,7 +72,7 @@ Here is the standard structure of a `.adc/` directory:
     └── skills/               # [Optional] Instruction sets and executable scripts providing specialized actions for AI Agents.
         └── your-skill/       # Example of a specific domain skill.
             ├── SKILL.md      # Actionable instructions for the AI on how to perform this specific task.
-            └── scripts/      # Utility scripts the AI can execute.��   ├── done/
+            └── scripts/      # Utility scripts the AI can execute.��   ├── done/
 │   ├── in-progress/
 │   └── todo/
 │       └── TASK-001.md
@@ -285,3 +285,4 @@ mkdir -p .adc/planning .adc/standards/conventions .adc/standards/checklists .adc
 touch .adc/index.md .adc/bootstrap.md .adc/prompt-rules.md .adc/planning/status.md .adc/planning/project-roadmap.md .adc/planning/development-phases.md .adc/knowledge/glossary.md .adc/knowledge/known-issues.md .adc/knowledge/amendments.md .adc/standards/conventions/structure.md .adc/standards/conventions/frontend.md .adc/standards/conventions/backend.md .adc/standards/conventions/data-engineering.md .adc/standards/conventions/performance.md .adc/standards/conventions/observability.md .adc/standards/conventions/security.md .adc/standards/conventions/devops.md .adc/standards/conventions/testing.md .adc/agent-workspace/mcp/mcp-servers.json .adc/standards/checklists/pr-review.md .adc/standards/runbooks/001-common-errors.md .adc/agent-workspace/scratchpad/session.md .adc/agent-workspace/tasks/todo/TASK-001.md .adcignore .cursorrules .windsurfrules .clinerules .roomadesrules .aider.rules .codexrules .antigravityrules .codeiumrules .codyrules .github/copilot-instructions.md
 ```
 Populate these files with the core essence and rules of your project to achieve peak synergy with AI coding assistants.
+
