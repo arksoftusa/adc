@@ -25,6 +25,7 @@ Here is the standard structure of a `.adc/` directory:
 ```text
 .adc/
 ├── index.md            # [Required] Core context entry point, containing global architecture and basic info.
+├── bootstrap.md        # [Required] Exact terminal commands to install dependencies, run DBs, and start local dev servers.
 ├── status.md           # [Required] Current project phase, active goals, and recent major changes.
 ├── project-roadmap.md  # [Required] High-level project timeline, milestones, and strategic objectives.
 ├── development-phases.md # [Required] Detailed breakdown of implementation phases and current sprint focus.
@@ -52,11 +53,22 @@ Here is the standard structure of a `.adc/` directory:
 │   └── mcp-servers.json # Configuration file to load project-specific MCP servers automatically.
 ├── checklists/         # [Optional] Pre-flight checklists the AI must complete before specific actions (e.g., PR creation).
 │   └── pr-review.md    # Example: Code review checklist.
+├── runbooks/           # [Optional] Troubleshooting guides and recovery procedures for common local/CI errors.
+│   └── 001-common-errors.md
+├── scratchpad/         # [Required] Ignored directory for agent memory (Brain Dump) and session handover context.
+│   └── session.md
+├── tasks/              # [Optional] Atomic task management queue for tracking multi-agent or multi-step execution.
+│   ├── done/
+│   ├── in-progress/
+│   └── todo/
+│       └── TASK-001.md
 └── diagrams/           # [Required] Living architecture and flow diagrams. MUST be auto-updated by AI on code changes.
     ├── architecture.mmd
     └── data-flow.mmd
 
 .adcignore              # [Optional] Specifies files/directories that AI Assistants MUST ignore when reading context.
+.cursorrules            # [Required] Standard IDE trigger pointer to initialize the AI on the .adc guidelines.
+.windsurfrules          # [Required] Standard IDE trigger pointer to initialize the AI on the .adc guidelines.
 ```
 
 ---
@@ -247,7 +259,7 @@ Inject the following directive into your Agent's System Prompt or Core Instructi
 Run the following command in your terminal to generate the barebones ADC structure for an existing codebase:
 
 ```bash
-mkdir -p .adc/conventions .adc/diagrams .adc/skills .adc/adr .adc/mcp .adc/checklists tests
-touch .adc/index.md .adc/status.md .adc/project-roadmap.md .adc/development-phases.md .adc/prompt-rules.md .adc/glossary.md .adc/known-issues.md .adc/amendments.md .adc/conventions/structure.md .adc/conventions/frontend.md .adc/conventions/backend.md .adc/conventions/data-engineering.md .adc/conventions/performance.md .adc/conventions/observability.md .adc/conventions/security.md .adc/conventions/devops.md .adc/conventions/testing.md .adc/mcp/mcp-servers.json .adc/checklists/pr-review.md .adcignore
+mkdir -p .adc/conventions .adc/diagrams .adc/skills .adc/adr .adc/mcp .adc/checklists .adc/runbooks .adc/tasks/todo .adc/tasks/in-progress .adc/tasks/done .adc/scratchpad tests
+touch .adc/index.md .adc/bootstrap.md .adc/status.md .adc/project-roadmap.md .adc/development-phases.md .adc/prompt-rules.md .adc/glossary.md .adc/known-issues.md .adc/amendments.md .adc/conventions/structure.md .adc/conventions/frontend.md .adc/conventions/backend.md .adc/conventions/data-engineering.md .adc/conventions/performance.md .adc/conventions/observability.md .adc/conventions/security.md .adc/conventions/devops.md .adc/conventions/testing.md .adc/mcp/mcp-servers.json .adc/checklists/pr-review.md .adc/runbooks/001-common-errors.md .adc/scratchpad/session.md .adc/tasks/todo/TASK-001.md .adcignore .cursorrules .windsurfrules
 ```
 Populate these files with the core essence and rules of your project to achieve peak synergy with AI coding assistants.

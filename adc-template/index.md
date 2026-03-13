@@ -18,3 +18,6 @@ It defines the exact rules, constraints, and architecture that AI Agents must fo
 ## Core Modules
 - `src/api`: Core backend services
 - `src/web`: Frontend React application
+
+## Environment Requirements
+Refer to `.adc/bootstrap.md` for exact start-up commands.
