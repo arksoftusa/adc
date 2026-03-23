@@ -44,6 +44,18 @@ venv/
 env/
 .env
 
+# Python requirements policy
+# Keep canonical dependency manifests tracked in git.
+!requirements*.txt
+!pyproject.toml
+!Pipfile
+!poetry.lock
+# Ignore local or transient dependency export files.
+requirements.local.txt
+requirements-*.local.txt
+pip-log.txt
+pip-delete-this-directory.txt
+
 # Environment variables
 .env
 .env.local
