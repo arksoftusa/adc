@@ -1,0 +1,58 @@
+name: Policy CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  quality-security:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pip-audit
+
+      - name: Run tests with coverage gate
+        run: |
+          pytest --cov=src --cov-report=term-missing --cov-fail-under=80
+
+      - name: Run dependency vulnerability audit
+        run: |
+          pip-audit -r requirements.txt
+
+  pr-policy-checklist:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Validate PR policy checklist text
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          if [ -z "$PR_BODY" ]; then
+            echo "PR body is empty. Fill in the policy checklist in the PR template."
+            exit 1
+          fi
+
+          echo "$PR_BODY" | grep -qi "JWT/token entropy policy applied" || {
+            echo "Missing JWT/token entropy checklist item in PR body."
+            exit 1
+          }
+
+          echo "$PR_BODY" | grep -qi "Data policy applied for pgvector/sqlite-vec/graph" || {
+            echo "Missing data policy checklist item in PR body."
+            exit 1
+          }
