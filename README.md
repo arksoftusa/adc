@@ -298,3 +298,23 @@ touch .adc/index.md .adc/bootstrap.md .adc/prompt-rules.md .adc/planning/status.
 ```
 Populate these files with the core essence and rules of your project to achieve peak synergy with AI coding assistants.
 
+---
+
+## 6. Deployment (GitHub Pages)
+
+This repository includes an automated GitHub Pages deployment workflow:
+
+- Workflow file: `.github/workflows/deploy-pages.yml`
+- Trigger conditions:
+  - Push to `main`
+  - Manual run via `workflow_dispatch`
+- Source content:
+  - `README.md` is published as `site/index.md`
+  - `docs/` is copied to `site/docs/`
+
+How to view deployment status and URL:
+
+1. Open **GitHub -> Actions** and run **Deploy Docs To Pages**.
+2. After success, open **GitHub -> Settings -> Pages** to see the published site URL.
+3. The deployed URL is also exposed in the workflow job output (`github-pages` environment URL).
+
