@@ -26,7 +26,7 @@ npm-debug.log
 yarn-error.log
 yarn.log
 .pnpm-debug.log
-dist/
+src/dist/
 build/
 coverage/
 .nyc_output/
