@@ -1,0 +1,32 @@
+# Project Update Report
+
+Date: 2026-03-26
+Repository: ADC
+
+## Scope
+This report captures the latest repository structure and convention updates requested during the current session.
+
+## Completed Changes
+1. Renamed ADC workspace folder from `agent-workspace` to `rd-edge-agent` under the template.
+2. Added Repodepot integration requirements:
+   - Repodepot project registration endpoint
+   - RD Edge Agent integration guidance
+   - RD MCP Server integration guidance
+3. Standardized build output location to `src/dist`.
+4. Added and standardized runtime log location at `src/log`.
+5. Renamed source utility scripts folder from `src/scripts` to `src/script` and aligned documentation references.
+6. Added terminology glossary file with workflow and platform terms, including CPMD.
+
+## Current Structure Rules
+- Source code: `src/`
+- Distribution output: `src/dist/`
+- Runtime logs: `src/log/`
+- Utility scripts: `src/script/`
+- Public/project documentation: `docs/`
+- Internal AI governance: `.adc/`
+
+## Workflow Term
+- CPMD: checkin, push, merge, deploy.
+
+## Notes
+- Changes above were applied to repository files and conventions so future generated templates align with the same structure.
