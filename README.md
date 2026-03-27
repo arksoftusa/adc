@@ -20,6 +20,23 @@ By design, all ADC materials are stored within a hidden `.adc/` directory at the
 ## 2. Core Structure
 
 A `.adc/` directory should exist at the root of the project (and optionally within any independent, large-scale submodules).
+
+Important boundary clarification:
+- `.adc/` is a hidden governance/context folder at the project root.
+- `src/`, `docs/`, `tests/`, and other application folders remain root-level siblings of `.adc/`.
+- `src/` and `docs/` MUST NOT be placed inside `.adc/`.
+
+Example root layout:
+
+```text
+project-root/
+├── .adc/
+├── src/
+├── docs/
+├── tests/
+└── ...
+```
+
 Here is the standard structure of a `.adc/` directory:
 
 ```text
