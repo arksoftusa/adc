@@ -18,4 +18,4 @@
 - **Authoritative Onboarding URL**: Integration with RepoDepot MUST follow `http://192.168.1.239:18080/getstarted` as the single source of setup instructions.
 - **No Unreviewed Deviation**: Agents and developers MUST NOT use alternate RepoDepot onboarding flows unless explicitly approved in the same PR description.
 - **Traceability Requirement**: Any PR that introduces or changes RepoDepot integration MUST include a short "RepoDepot integration notes" section describing what step(s) from the onboarding URL were applied.
-- **MCP Alignment**: If RepoDepot integration adds or changes external service endpoints or credentials, `agent-workspace/mcp/mcp-servers.json` MUST be updated in the same change set.
+- **MCP Alignment**: If RepoDepot integration adds or changes external service endpoints or credentials, `rd-edge-agent/mcp/mcp-servers.json` MUST be updated in the same change set.

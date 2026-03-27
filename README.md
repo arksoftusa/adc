@@ -76,7 +76,7 @@ Here is the standard structure of a `.adc/` directory:
 │       ├── architecture.mmd
 │       └── data-flow.mmd
 │
-└── agent-workspace/          # [Dynamic AI Agent Workspace]
+└── rd-edge-agent/            # [Dynamic RD Edge Agent Workspace]
     ├── tasks/                # [Optional] Atomic task management queue for tracking multi-agent or multi-step execution.
     │   ├── done/
     │   ├── in-progress/
@@ -293,7 +293,7 @@ Inject the following directive into your Agent's System Prompt or Core Instructi
 Run the following command in your terminal to generate the barebones ADC structure for an existing codebase:
 
 ```bash
-mkdir -p .adc/planning .adc/standards/conventions .adc/standards/checklists .adc/standards/runbooks .adc/knowledge/adr .adc/knowledge/diagrams .adc/agent-workspace/skills .adc/agent-workspace/mcp .adc/agent-workspace/tasks/todo .adc/agent-workspace/tasks/in-progress .adc/agent-workspace/tasks/done .adc/agent-workspace/scratchpad tests .github
+mkdir -p .adc/planning .adc/standards/conventions .adc/standards/checklists .adc/standards/runbooks .adc/knowledge/adr .adc/knowledge/diagrams .adc/rd-edge-agent/skills .adc/rd-edge-agent/mcp .adc/rd-edge-agent/tasks/todo .adc/rd-edge-agent/tasks/in-progress .adc/rd-edge-agent/tasks/done .adc/rd-edge-agent/scratchpad tests .github
 touch .adc/index.md .adc/bootstrap.md .adc/prompt-rules.md .adc/planning/status.md .adc/planning/project-roadmap.md .adc/planning/development-phases.md .adc/knowledge/glossary.md .adc/knowledge/known-issues.md .adc/knowledge/amendments.md .adc/standards/conventions/structure.md .adc/standards/conventions/frontend.md .adc/standards/conventions/backend.md .adc/standards/conventions/data-engineering.md .adc/standards/conventions/performance.md .adc/standards/conventions/observability.md .adc/standards/conventions/security.md .adc/standards/conventions/devops.md .adc/standards/conventions/testing.md .adc/agent-workspace/mcp/mcp-servers.json .adc/standards/checklists/pr-review.md .adc/standards/runbooks/001-common-errors.md .adc/agent-workspace/scratchpad/session.md .adc/agent-workspace/tasks/todo/TASK-001.md .adcignore .cursorrules .windsurfrules .clinerules .roomadesrules .aider.rules .codexrules .antigravityrules .codeiumrules .codyrules .github/copilot-instructions.md
 ```
 Populate these files with the core essence and rules of your project to achieve peak synergy with AI coding assistants.

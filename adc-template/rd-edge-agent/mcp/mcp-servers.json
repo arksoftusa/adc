@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "local-postgres": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres", "postgresql://localhost/mydb"]
+    },
+    "rd-repodepot": {
+      "command": "node",
+      "args": ["src/rd-mcp/index.js"],
+      "env": {
+        "RD_MCP_PORT": "3001",
+        "RD_MCP_TOKEN": "${RD_MCP_TOKEN}",
+        "RD_PROJECT_ID": "${RD_PROJECT_ID}",
+        "RD_UPSTREAM_URL": "http://192.168.1.239:18080"
+      },
+      "description": "Repodepot MCP Server (local) - provides programmatic access to artifact catalog, edge agents, and project resources"
+    }
+  }
+}
