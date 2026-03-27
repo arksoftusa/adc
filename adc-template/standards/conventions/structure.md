@@ -65,6 +65,12 @@ All supplementary bash, Python, or Node.js scripts for building, deploying, or l
 - `src/script/deploy.sh` — Production deployment script
 - `src/script/seed.py` — Development data seeding
 
+## Git Push Protocol
+
+- Default protocol for repository check-in and push operations MUST be HTTPS.
+- If HTTPS push fails due to transient auth/network issues, SSH is the required fallback.
+- Teams MUST avoid protocol switching outside this order unless a maintainer approves an exception in the same change set.
+
 ## Documentation
 
 - `docs/` — All user-facing, API, and project documentation
