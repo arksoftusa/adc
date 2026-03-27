@@ -57,13 +57,13 @@ Approved root-level files only:
 
 ## Utility Scripts
 
-All supplementary bash, Python, or Node.js scripts for building, deploying, or local development MUST be placed in `src/scripts/`.
+All supplementary bash, Python, or Node.js scripts for building, deploying, or local development MUST be placed in `src/script/`.
 
 **Examples**:
-- `src/scripts/build.sh` — Compilation pipeline
-- `src/scripts/migrate.js` — Database migration runner
-- `src/scripts/deploy.sh` — Production deployment script
-- `src/scripts/seed.py` — Development data seeding
+- `src/script/build.sh` — Compilation pipeline
+- `src/script/migrate.js` — Database migration runner
+- `src/script/deploy.sh` — Production deployment script
+- `src/script/seed.py` — Development data seeding
 
 ## Documentation
 

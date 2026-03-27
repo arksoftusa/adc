@@ -68,7 +68,8 @@ pip-delete-this-directory.txt
 # Temp and Logs
 tmp/
 temp/
-logs/
+src/log/*
+!src/log/.gitkeep
 *.log
 
 # Framework specifics (React/Next/Vite etc)

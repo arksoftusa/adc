@@ -5,6 +5,6 @@ build/
 .git/
 coverage/
 tmp/
-logs/
+src/log/
 rd-edge-agent/scratchpad/
 rd-edge-agent/tasks/
