@@ -21,6 +21,20 @@ echo "RD_EDGE_AGENT_TOKEN=<token-from-getstarted>" >> .env
 echo "RD_PROJECT_ID=<project-id-from-getstarted>" >> .env
 ```
 
+After RD Edge Agent and RD MCP Server are integrated, initialize a full repository index before starting feature work:
+
+```text
+Required one-time bootstrap indexing flow
+1) Ensure rd-edge-agent/mcp/mcp-servers.json is configured with RD_PROJECT_ID and rd-repodepot server.
+2) Run a full-project indexing call through RD MCP using:
+	- project_id: RD_PROJECT_ID
+	- repo_path: repository root
+	- changed_files: all tracked source and documentation files
+3) Treat indexing as successful only after the RD service returns a successful completion status.
+```
+
+For all later changes, run incremental indexing on changed files only.
+
 ## Local Development Setup
 
 ```bash

@@ -241,6 +241,7 @@ This file enforces your team's quality assurance policies and testing methodolog
 **Example constraints to include:**
 - **TDD Enforcement (Test-Driven Development)**: "This project STRICTLY adheres to TDD. When asked to implement a new feature, you MUST write the failing tests in the `tests/` directory **FIRST**, and ONLY write the implementation in `src/` after the test design is confirmed."
 - **Coverage Rules**: "Every core domain function MUST have corresponding unit tests. Un-tested code is considered incomplete."
+- **LOC Coverage (Line of Code Coverage)**: "Define LOC Coverage as `Executed Coverable Lines / Total Coverable Lines * 100`. Coverable lines include executable statements and exclude blanks, comments, generated code, and non-executable declarations."
 - **Mocking**: "When writing tests for the backend API, you MUST use our standardized mocking factory instead of hitting the real database."
 
 ### 3.18 `diagrams/` (Living Architecture Documentation)
@@ -254,6 +255,7 @@ To ensure that human developers always have an accurate mental model of the syst
 To achieve true project portability for AI Agents, the project must ship with its own toolsets. The `.adc/mcp/` directory stores the configuration files required to bootstrap **Model Context Protocol (MCP)** servers.
 - **Portability**: "When cloning this repository on a new machine, the user or AI can directly import `.adc/mcp/mcp-servers.json` into their local AI client (like Cursor or Claude Desktop) to instantly gain access to the project's dedicated database connections, API wrappers, or internal corporate context tools."
 - **Constraint**: "Any new external integrations (e.g., adding a PostgreSQL database) MUST be accompanied by an update to the MCP configuration so that future AI agents inherit the ability to query that database directly."
+- **RD Bootstrap Indexing**: "After integrating RD Edge Agent and RD MCP Server for a project, you MUST initialize one full-project index through RD before executing feature tasks. Subsequent updates MUST use incremental indexing on changed files."
 
 ### 3.20 `checklists/` (Autonomous Pre-Flight Checks)
 For high-end autonomous systems, deterministic checklists prevent AI from cutting corners.
