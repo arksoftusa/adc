@@ -88,3 +88,4 @@ out/
 # adc-template/  # Uncomment if you want to ignore the generated template test output
 
 *.ps1
+!src/scripts/*.ps1
