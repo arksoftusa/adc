@@ -70,6 +70,8 @@ tmp/
 temp/
 src/log/*
 !src/log/.gitkeep
+src/logs/*
+!src/logs/.gitkeep
 *.log
 
 # Framework specifics (React/Next/Vite etc)

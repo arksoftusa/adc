@@ -9,6 +9,7 @@ This file defines all domain-specific terminology, abbreviations, and shortcuts 
 | **CPMD** | Checkin/Push/Merge/Deploy | Four-step git workflow: `git add -A`, `git commit -m "..."`, `git push origin main`, then deploy via CI/CD pipeline |
 | **TDD** | Test-Driven Development | Development methodology: write failing tests first, then implement to pass, then refactor with tests passing |
 | **ADC** | Autonomous Development Constitution | Standardized framework for managing project governance, AI instructions, and developer context in `.adc/` folder |
+| **GHC** | GitHub Copilot | Standard abbreviation for GitHub Copilot in this project documentation and discussion |
 | **MCP** | Model Context Protocol | Protocol for AI agents (like Copilot, Claude) to access external tools and data sources |
 | **RD** | Repodepot | Central repository and artifact management system; use `RD` as shorthand in code/docs |
 
@@ -70,6 +71,17 @@ This file defines all domain-specific terminology, abbreviations, and shortcuts 
 | **E2E Test** | End-to-end test simulating real user workflows |
 | **Coverage** | Percentage of code lines executed by tests; target 80%+ for core logic |
 | **Mock** | Simulated object/service used in tests instead of real implementation |
+
+## Quality Glossary
+
+| Term | Definition |
+|---|---|
+| **Branch Coverage** | Percentage of decision branches (`if/else`, match/case, boolean paths) exercised by tests |
+| **Changed-Lines Coverage** | Coverage measured only on lines modified in the current change set |
+| **Mutation Score** | Percentage of injected code mutations that are detected (killed) by tests |
+| **Flaky Test Rate** | Ratio of tests that fail nondeterministically without code changes |
+| **Golden Test** | Regression test comparing generated output against approved baseline artifacts |
+| **Smoke Test** | Small, fast test set validating critical system behavior after changes |
 
 ## Security & DevOps
 

@@ -25,7 +25,7 @@ After RD Edge Agent and RD MCP Server are integrated, initialize a full reposito
 
 ```text
 Required one-time bootstrap indexing flow
-1) Ensure rd-edge-agent/mcp/mcp-servers.json is configured with RD_PROJECT_ID and rd-repodepot server.
+1) Ensure mcp-servers.json is configured for the rd-repodepot server and receives project context from environment variables.
 2) Run a full-project indexing call through RD MCP using:
 	- project_id: RD_PROJECT_ID
 	- repo_path: repository root
