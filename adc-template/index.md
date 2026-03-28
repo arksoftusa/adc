@@ -31,4 +31,4 @@ This project **MUST** integrate with the Repodepot ecosystem:
 Both RD services are implemented locally within this project and must be started during bootstrap.
 
 ## Environment Requirements
-Refer to `.adc/bootstrap.md` for exact start-up commands.
+Refer to `bootstrap.md` for exact start-up commands.

@@ -1,9 +1,9 @@
 ﻿# Autonomous Development Constitution (ADC)
 
-**Version:** 1.0.0  
-**Status:** Draft  
+**Version:** 1.1.5  
+**Status:** Published  
 **Author:** Nate Scott  
-**Date:** 2026-03-13
+**Date:** 2026-03-27
 
 ## 1. Introduction
 
@@ -136,7 +136,7 @@ This file isolates the mandatory rules directed at the AI. By separating these i
 - **You MUST** strictly use absolute paths when importing modules.
 - **You MUST NOT** use the `any` type when defining TypeScript interfaces.
 - **You SHOULD** wrap all asynchronous function calls in `try-catch` blocks.
-- **Context Awareness**: When modifying the `src/db` directory, you must prioritize reading `.adc/conventions/backend.md`.
+- **Context Awareness**: When modifying the `src/db` directory, you must prioritize reading `.adc/standards/conventions/backend.md`.
 
 ### 3.3 `glossary.md` (Domain Glossary)
 One of the most common mistakes made by AI and new employees is misunderstanding industry jargon, acronyms, and business domain terms.
@@ -146,7 +146,7 @@ By defining a domain glossary, AI assistants will be significantly more accurate
 
 ### 3.4 `conventions/` (Domain-Specific Conventions)
 To prevent overwhelming the AI's context window with irrelevant information, massive documentation files are split by domain.
-Instead of providing the entire documentation at once, the AI can load these files on-demand. For instance, if the AI is tasked with updating the React UI, it only needs to read `.adc/conventions/frontend.md`, saving tokens and focusing its attention purely on frontend constraints.
+Instead of providing the entire documentation at once, the AI can load these files on-demand. For instance, if the AI is tasked with updating the React UI, it only needs to read `.adc/standards/conventions/frontend.md`, saving tokens and focusing its attention purely on frontend constraints.
 
 ### 3.5 `skills/` (Actionable AI Skills)
 To evolve the AI from merely "understanding static rules" to "executing complex project-specific actions," ADC introduces the `skills/` directory.
@@ -247,7 +247,7 @@ This file enforces your team's quality assurance policies and testing methodolog
 ### 3.18 `diagrams/` (Living Architecture Documentation)
 To ensure that human developers always have an accurate mental model of the system, the `diagrams/` directory MUST remain a "living" documentation hub.
 **Example constraints to include:**
-- **Auto-Update Requirement**: "Whenever a new core module is created, an API endpoint is added, or the database schema is modified, you MUST automatically generate or update the corresponding `.mmd` (Mermaid) diagrams in the `.adc/diagrams/` directory."
+- **Auto-Update Requirement**: "Whenever a new core module is created, an API endpoint is added, or the database schema is modified, you MUST automatically generate or update the corresponding `.mmd` (Mermaid) diagrams in the `.adc/knowledge/diagrams/` directory."
 - **Format Consistency**: "All diagrams MUST be written in Mermaid format so that they can be directly rendered in standard Markdown viewers and easily manipulated by AI."
 - **Diagram Types**: "Maintain at least three baseline diagrams: `architecture.mmd` (high-level system design), `data-flow.mmd` (how data moves between services), and `schema.mmd` (database entity relationships)."
 
@@ -256,6 +256,9 @@ To achieve true project portability for AI Agents, the project must ship with it
 - **Portability**: "When cloning this repository on a new machine, the user or AI can directly import `.adc/mcp/mcp-servers.json` into their local AI client (like Cursor or Claude Desktop) to instantly gain access to the project's dedicated database connections, API wrappers, or internal corporate context tools."
 - **Constraint**: "Any new external integrations (e.g., adding a PostgreSQL database) MUST be accompanied by an update to the MCP configuration so that future AI agents inherit the ability to query that database directly."
 - **RD Bootstrap Indexing**: "After integrating RD Edge Agent and RD MCP Server for a project, you MUST initialize one full-project index through RD before executing feature tasks. Subsequent updates MUST use incremental indexing on changed files."
+- **RD Policy Rule**: "Use RD Edge Agent workspace files (`.adc/rd-edge-agent/tasks/`, `.adc/rd-edge-agent/scratchpad/`) for orchestration state only. Canonical requirements and architecture decisions MUST remain in planning/standards/knowledge files."
+- **RD Execution Rule**: "RD MCP integrations are for retrieval/indexing and external context operations. Local build/test/deploy execution MUST remain on native project tooling."
+- **RD Secret Rule**: "RD credentials (`RD_PROJECT_ID`, `RD_MCP_TOKEN`, `RD_EDGE_AGENT_TOKEN`) MUST be injected through environment variables and MUST NOT be committed in tracked files."
 
 ### 3.20 `checklists/` (Autonomous Pre-Flight Checks)
 For high-end autonomous systems, deterministic checklists prevent AI from cutting corners.
@@ -286,7 +289,7 @@ Inject the following directive into your Agent's System Prompt or Core Instructi
 > 4. **Vocabulary Synchronization**: Read `.adc/glossary.md` to guarantee correct domain-specific naming in variables, DB schemas, and your generated documentation.
 > 5. **Tool Utilization**: Check `.adc/skills/` to see if your current goal can be achieved by utilizing pre-existing automated workflows or executing specific scripts within the project. Verify required tools via `.adc/mcp/`.
 > 6. **Pre-flight Checks**: Complete all requirements in `.adc/checklists/` before finalizing commits or pull requests.
-> 7. **Self-Correction & Documentation**: Before concluding your execution session, if you have autonomously modified any architecture, data flow, or database schema, you MUST proactively update the corresponding Mermaid diagrams in `.adc/diagrams/`."
+> 7. **Self-Correction & Documentation**: Before concluding your execution session, if you have autonomously modified any architecture, data flow, or database schema, you MUST proactively update the corresponding Mermaid diagrams in `.adc/knowledge/diagrams/`."
 
 ---
 
@@ -296,7 +299,7 @@ Run the following command in your terminal to generate the barebones ADC structu
 
 ```bash
 mkdir -p .adc/planning .adc/standards/conventions .adc/standards/checklists .adc/standards/runbooks .adc/knowledge/adr .adc/knowledge/diagrams .adc/rd-edge-agent/skills .adc/rd-edge-agent/mcp .adc/rd-edge-agent/tasks/todo .adc/rd-edge-agent/tasks/in-progress .adc/rd-edge-agent/tasks/done .adc/rd-edge-agent/scratchpad tests .github
-touch .adc/index.md .adc/bootstrap.md .adc/prompt-rules.md .adc/planning/status.md .adc/planning/project-roadmap.md .adc/planning/development-phases.md .adc/knowledge/glossary.md .adc/knowledge/known-issues.md .adc/knowledge/amendments.md .adc/standards/conventions/structure.md .adc/standards/conventions/frontend.md .adc/standards/conventions/backend.md .adc/standards/conventions/data-engineering.md .adc/standards/conventions/performance.md .adc/standards/conventions/observability.md .adc/standards/conventions/security.md .adc/standards/conventions/devops.md .adc/standards/conventions/testing.md .adc/agent-workspace/mcp/mcp-servers.json .adc/standards/checklists/pr-review.md .adc/standards/runbooks/001-common-errors.md .adc/agent-workspace/scratchpad/session.md .adc/agent-workspace/tasks/todo/TASK-001.md .adcignore .cursorrules .windsurfrules .clinerules .roomadesrules .aider.rules .codexrules .antigravityrules .codeiumrules .codyrules .github/copilot-instructions.md
+touch .adc/index.md .adc/bootstrap.md .adc/prompt-rules.md .adc/planning/status.md .adc/planning/project-roadmap.md .adc/planning/development-phases.md .adc/knowledge/glossary.md .adc/knowledge/known-issues.md .adc/knowledge/amendments.md .adc/standards/conventions/structure.md .adc/standards/conventions/frontend.md .adc/standards/conventions/backend.md .adc/standards/conventions/data-engineering.md .adc/standards/conventions/performance.md .adc/standards/conventions/observability.md .adc/standards/conventions/security.md .adc/standards/conventions/devops.md .adc/standards/conventions/testing.md .adc/rd-edge-agent/mcp/mcp-servers.json .adc/standards/checklists/pr-review.md .adc/standards/runbooks/001-common-errors.md .adc/rd-edge-agent/scratchpad/session.md .adc/rd-edge-agent/tasks/todo/TASK-001.md .adcignore .cursorrules .windsurfrules .clinerules .roomadesrules .aider.rules .codexrules .antigravityrules .codeiumrules .codyrules .github/copilot-instructions.md
 ```
 Populate these files with the core essence and rules of your project to achieve peak synergy with AI coding assistants.
 
