@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  flask:
+    image: your-flask-image:latest
+    container_name: flask-api
+    restart: unless-stopped
+    ports:
+      - '5000:5000'
+    environment:
+      - FLASK_ENV=production
+      - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - worker-network
+
+  celery-worker:
+    image: your-flask-image:latest
+    container_name: flask-celery-worker
+    restart: unless-stopped
+    command: ['celery', '-A', 'app.celery_app', 'worker', '--loglevel=info']
+    environment:
+      - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - worker-network
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: flask-rabbitmq
+    restart: unless-stopped
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    healthcheck:
+      test: ['CMD', 'rabbitmq-diagnostics', '-q', 'ping']
+      interval: 15s
+      timeout: 10s
+      retries: 5
+    volumes:
+      - flask_rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - worker-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: flask-worker-redis
+    restart: unless-stopped
+    command: ['redis-server', '--appendonly', 'yes']
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    volumes:
+      - flask_worker_redis_data:/data
+    networks:
+      - worker-network
+
+volumes:
+  flask_rabbitmq_data:
+    driver: local
+  flask_worker_redis_data:
+    driver: local
+
+networks:
+  worker-network:
+    driver: bridge
