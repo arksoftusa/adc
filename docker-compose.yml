@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   gateway:
     build:
@@ -56,14 +55,14 @@ services:
       - 'POSTGRES_DB=${POSTGRES_DB:-appdb}'
       - 'POSTGRES_USER=${POSTGRES_USER:-app}'
       - 'POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-app}'
-      - 'SECRET_KEY=${SECRET_KEY}'
-      - 'JWT_SECRET_KEY=${JWT_SECRET_KEY}'
+      - 'SECRET_KEY=${SECRET_KEY:-change-me-secret-key}'
+      - 'JWT_SECRET_KEY=${JWT_SECRET_KEY:-change-me-jwt-secret-key}'
       - 'AD_BASE_URL=${AD_BASE_URL:-http://localhost:8002}'
       - 'AD_OPERATOR_TOKEN=${AD_OPERATOR_TOKEN:-}'
       - 'AD_AGENCY_ROUTES=${AD_AGENCY_ROUTES:-}'
-      - 'OPENAI_API_KEY=${OPENAI_API_KEY}'
+      - 'OPENAI_API_KEY=${OPENAI_API_KEY:-dummy-openai-key}'
       - 'OPENAI_EMBEDDING_MODEL=${OPENAI_EMBEDDING_MODEL:-text-embedding-3-small}'
-      - 'CORS_ORIGINS=${CORS_ORIGINS}'
+      - 'CORS_ORIGINS=${CORS_ORIGINS:-http://localhost:3000}'
     depends_on:
       redis:
         condition: service_healthy
@@ -87,6 +86,8 @@ services:
       context: .
       dockerfile: Dockerfile.frontend.prod
       args:
+        - 'VUESTIC_ADMIN_REPO=https://github.com/epicmaxco/vuestic-admin'
+        - 'VUESTIC_ADMIN_REF=master'
         - 'NEXT_PUBLIC_API_URL=https://your-domain.com'
         - 'API_URL=https://your-domain.com'
     container_name: your-app-frontend
