@@ -5,6 +5,7 @@
 - For every ADC update, increment README version and update README date in the same change.
 - Do not bypass safety checks in `.adc/standards/conventions/security.md`.
 - Follow Test-Driven Development (TDD) in `.adc/standards/conventions/testing.md`.
+- Default frontend theme and layout should closely match `https://admin-demo.vuestic.dev`, with dark theme as the default.
 - Do not introduce new third-party dependencies (for example, `npm install`, `pip install`) without explicit human authorization.
 - Document progress, failed attempts, and environment issues in `.adc/rd-edge-agent/scratchpad/session.md` before concluding a task.
 - Keep outputs deterministic for the same symbol and unchanged repository state.
