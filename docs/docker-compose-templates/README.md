@@ -193,6 +193,12 @@ This folder provides reusable Docker Compose templates for common setups.
 63. `compose.temporal-postgres.yml`
 - Durable workflow orchestration with Temporal + PostgreSQL.
 
+64. `compose.appsmith-mongodb-redis.yml`
+- Internal app builder platform with Appsmith + MongoDB + Redis.
+
+65. `compose.appsmith-pgvector-redis.yml`
+- Appsmith with pgvector-enabled PostgreSQL + Redis for AI/vector workloads.
+
 ## Usage
 
 Copy the template you want and adjust image names, env vars, domains, and volumes.
