@@ -2,6 +2,14 @@
 
 This folder provides reusable Docker Compose templates for common setups.
 
+## Persistence Rule
+
+All stateful services in templates must use persistent named volumes.
+
+- Datastores and queues (PostgreSQL, MySQL, MongoDB, Redis, Kafka, RabbitMQ, MinIO, etc.) must mount named volumes for data directories.
+- Services that manage internal application state (for example Appsmith stacks/data) must persist state with named volumes.
+- Templates intended to be stateless-only (for example test runners) should clearly stay stateless and must not claim persistence.
+
 ## Available Templates
 
 1. `compose.web-postgres-redis.yml`
@@ -198,6 +206,12 @@ This folder provides reusable Docker Compose templates for common setups.
 
 65. `compose.appsmith-pgvector-redis.yml`
 - Appsmith with pgvector-enabled PostgreSQL + Redis for AI/vector workloads.
+
+66. `compose.refine-antdesign-fastapi-pgvector-redis.yml`
+- React + TypeScript (Vite) with Ant Design + Refine frontend, FastAPI backend, pgvector PostgreSQL, and Redis.
+
+67. `compose.vuestic-admin-fastapi-pgvector-redis.yml`
+- Vuestic Admin frontend + FastAPI backend + pgvector PostgreSQL + Redis.
 
 ## Usage
 
