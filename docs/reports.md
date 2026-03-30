@@ -18,7 +18,7 @@ This report captures the latest repository structure and convention updates requ
 6. Added terminology glossary file with workflow and platform terms, including CPMD.
 
 ## Current Repository Structure
-- Source code package: `src/fastapi_app/`
+- Source code package: `src/backend/`
 - Test suite: `src/tests/`
 - Operational scripts: `src/scripts/`
 - Runtime logs directory: `src/logs/`
