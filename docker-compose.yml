@@ -53,9 +53,9 @@ services:
       - 'REDIS_URL=redis://redis:6379/0'
       - POSTGRES_SERVER=postgres
       - POSTGRES_PORT=5432
-      - 'POSTGRES_DB=${POSTGRES_DB}'
-      - 'POSTGRES_USER=${POSTGRES_USER}'
-      - 'POSTGRES_PASSWORD=${POSTGRES_PASSWORD}'
+      - 'POSTGRES_DB=${POSTGRES_DB:-appdb}'
+      - 'POSTGRES_USER=${POSTGRES_USER:-app}'
+      - 'POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-app}'
       - 'SECRET_KEY=${SECRET_KEY}'
       - 'JWT_SECRET_KEY=${JWT_SECRET_KEY}'
       - 'AD_BASE_URL=${AD_BASE_URL:-http://localhost:8002}'
@@ -71,7 +71,7 @@ services:
         condition: service_healthy
     networks:
       - your-app-network
-    command: 'uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4'
+    command: 'uvicorn src.backend.main:app --host 0.0.0.0 --port 8000 --workers 4'
     healthcheck:
       test:
         - CMD
@@ -124,7 +124,7 @@ services:
       - 'redis_data:/data'
     networks:
       - your-app-network
-    command: 'redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-}'
+    command: 'redis-server --appendonly yes'
     healthcheck:
       test:
         - CMD
@@ -138,9 +138,9 @@ services:
     container_name: your-app-postgres
     restart: unless-stopped
     environment:
-      - 'POSTGRES_DB=${POSTGRES_DB}'
-      - 'POSTGRES_USER=${POSTGRES_USER}'
-      - 'POSTGRES_PASSWORD=${POSTGRES_PASSWORD}'
+      - 'POSTGRES_DB=${POSTGRES_DB:-appdb}'
+      - 'POSTGRES_USER=${POSTGRES_USER:-app}'
+      - 'POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-app}'
     volumes:
       - 'postgres_data:/var/lib/postgresql/data'
     networks:
@@ -148,7 +148,7 @@ services:
     healthcheck:
       test:
         - CMD-SHELL
-        - 'pg_isready -U ${POSTGRES_USER}'
+        - 'pg_isready -U ${POSTGRES_USER:-app} -d ${POSTGRES_DB:-appdb}'
       interval: 10s
       timeout: 5s
       retries: 5
