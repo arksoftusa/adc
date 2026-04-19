@@ -9,14 +9,14 @@ Before starting the application, register with the Repodepot ecosystem:
 
 ```bash
 # 1. Register this project with Repodepot
-# Visit: http://192.168.1.239:18080/getstarted
+# Visit: http://192.168.1.240:18080/getstarted
 # Follow the guided setup to:
 #   - Register this project in the Repodepot catalog
 #   - Retrieve MCP server credentials and edge agent token
 #   - Store credentials in .env (see step 2 below)
 
 # 2. Configure RD environment variables
-echo "RD_MCP_SERVER_URL=http://192.168.1.239:18080/mcp" >> .env
+echo "RD_MCP_SERVER_URL=http://192.168.1.240:18080/mcp" >> .env
 echo "RD_EDGE_AGENT_TOKEN=<token-from-getstarted>" >> .env
 echo "RD_PROJECT_ID=<project-id-from-getstarted>" >> .env
 ```
@@ -71,5 +71,5 @@ curl http://localhost:3001/mcp/health
 curl http://localhost:3002/edges/health
 
 # Verify upstream Repodepot connectivity
-curl http://192.168.1.239:18080/health
+curl http://192.168.1.240:18080/health
 ```

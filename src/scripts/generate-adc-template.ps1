@@ -45,7 +45,7 @@ It defines the exact rules, constraints, and architecture that AI Agents must fo
 
 ## Required Integrations
 This project **MUST** integrate with the Repodepot ecosystem:
-- **Repodepot Project**: Central repository and artifact management system (registration via `http://192.168.1.239:18080/getstarted`)
+- **Repodepot Project**: Central repository and artifact management system (registration via `http://192.168.1.240:18080/getstarted`)
 - **RD Edge Agent** (`src/rd-edge-agent`): Local execution and orchestration agent
 - **RD MCP Server** (`src/rd-mcp`): Model Context Protocol server for programmatic Repodepot access
 - **Initial RD Indexing**: Immediately after RD Edge Agent + RD MCP Server integration, run full-project indexing once so retrieval/review tools can access the entire repository context.
@@ -68,14 +68,14 @@ Before starting the application, register with the Repodepot ecosystem:
 
 ```bash
 # 1. Register this project with Repodepot
-# Visit: http://192.168.1.239:18080/getstarted
+# Visit: http://192.168.1.240:18080/getstarted
 # Follow the guided setup to:
 #   - Register this project in the Repodepot catalog
 #   - Retrieve MCP server credentials and edge agent token
 #   - Store credentials in .env (see step 2 below)
 
 # 2. Configure RD environment variables
-echo "RD_MCP_SERVER_URL=http://192.168.1.239:18080/mcp" >> .env
+echo "RD_MCP_SERVER_URL=http://192.168.1.240:18080/mcp" >> .env
 echo "RD_EDGE_AGENT_TOKEN=<token-from-getstarted>" >> .env
 echo "RD_PROJECT_ID=<project-id-from-getstarted>" >> .env
 ```
@@ -130,7 +130,7 @@ curl http://localhost:3001/mcp/health
 curl http://localhost:3002/edges/health
 
 # Verify upstream Repodepot connectivity
-curl http://192.168.1.239:18080/health
+curl http://192.168.1.240:18080/health
 ```
 '@;
 
@@ -150,7 +150,7 @@ curl http://192.168.1.239:18080/health
 - For new features, write tests first.
 - Keep source logic in `src/`, scripts in `src/scripts/`, tests in `src/tests/`, and docs in `docs/`.
 - Do not commit secrets, tokens, or private keys.
-- All Docker commands must use remote daemon `tcp://192.168.1.239:2375` via `DOCKER_HOST`.
+- All Docker commands must use remote daemon `tcp://192.168.1.240:2375` via `DOCKER_HOST`.
 - Never commit directly to `main`; use a `dev/*` branch and merge through review.
 
 ## RD Use Policy
@@ -206,7 +206,7 @@ curl http://192.168.1.239:18080/health
 - **Rotation Update**: When deploy keys rotate, `docs/deploy_key.md` MUST be updated in the same change set.
 
 ## RepoDepot Integration Policy
-- **Authoritative Onboarding URL**: Integration with RepoDepot MUST follow `http://192.168.1.239:18080/getstarted` as the single source of setup instructions.
+- **Authoritative Onboarding URL**: Integration with RepoDepot MUST follow `http://192.168.1.240:18080/getstarted` as the single source of setup instructions.
 - **No Unreviewed Deviation**: Agents and developers MUST NOT use alternate RepoDepot onboarding flows unless explicitly approved in the same PR description.
 - **Traceability Requirement**: Any PR that introduces or changes RepoDepot integration MUST include a short "RepoDepot integration notes" section describing what step(s) from the onboarding URL were applied.
 - **MCP Alignment**: If RepoDepot integration adds or changes external service endpoints or credentials, `mcp-servers.json` MUST be updated in the same change set.

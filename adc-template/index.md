@@ -23,7 +23,7 @@ It defines the exact rules, constraints, and architecture that AI Agents must fo
 
 ## Required Integrations
 This project **MUST** integrate with the Repodepot ecosystem:
-- **Repodepot Project**: Central repository and artifact management system (registration via `http://192.168.1.239:18080/getstarted`)
+- **Repodepot Project**: Central repository and artifact management system (registration via `http://192.168.1.240:18080/getstarted`)
 - **RD Edge Agent** (`src/rd-edge-agent`): Local execution and orchestration agent
 - **RD MCP Server** (`src/rd-mcp`): Model Context Protocol server for programmatic Repodepot access
 - **Initial RD Indexing**: Immediately after RD Edge Agent + RD MCP Server integration, run full-project indexing once so retrieval/review tools can access the entire repository context.
