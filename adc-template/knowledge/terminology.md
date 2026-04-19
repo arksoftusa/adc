@@ -17,10 +17,10 @@ This file defines all domain-specific terminology, abbreviations, and shortcuts 
 
 | Term | Definition |
 |---|---|
-| **Repodepot** | Central artifact catalog, project registry, and orchestration service (upstream at `http://192.168.1.239:18080`) |
+| **Repodepot** | Central artifact catalog, project registry, and orchestration service (upstream at `http://192.168.1.240:18080`) |
 | **RD MCP Server** | Model Context Protocol server for programmatic Repodepot access; implemented locally in `src/rd-mcp` |
 | **RD Edge Agent** | Local execution and orchestration agent; workspace stored in `.adc/rd-edge-agent`, implementation in `src/rd-edge-agent` |
-| **RD Getstarted** | Bootstrap endpoint for Repodepot registration at `http://192.168.1.239:18080/getstarted` |
+| **RD Getstarted** | Bootstrap endpoint for Repodepot registration at `http://192.168.1.240:18080/getstarted` |
 
 ## Project Structure Terms
 

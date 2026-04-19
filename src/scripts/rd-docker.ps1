@@ -17,7 +17,7 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
 if (-not $env:DOCKER_HOST) {
-    $env:DOCKER_HOST = 'tcp://192.168.1.239:2375'
+    $env:DOCKER_HOST = 'tcp://192.168.1.240:2375'
 }
 
 function Resolve-ComposeFile {
