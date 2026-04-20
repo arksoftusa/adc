@@ -1,9 +1,9 @@
 ﻿# Autonomous Development Constitution (ADC)
 
-**Version:** 1.1.5  
+**Version:** 1.1.7  
 **Status:** Published  
 **Author:** Nate Scott  
-**Date:** 2026-03-27
+**Date:** 2026-04-19
 
 ## 1. Introduction
 
@@ -271,6 +271,7 @@ Since the ADC acts as the absolute Digital Constitution, altering core rules (li
 - **Human Ratification**: "An AI Agent CANNOT self-approve amendments. All changes to the Constitution require explicit human review and approval."
 - **Documenting Amendments**: "Every ratified change must be logged chronologically in `.adc/amendments.md`, detailing the date, the rule altered, and the specific reason for the governance shift."
 - **Versioning**: "Significant changes to the constitution (e.g., adding a new `conventions/` domain) require bumping the MAJOR or MINOR version declared in `index.md`."
+- **Upstream Synchronization**: "The maintainer MUST periodically review `github.com/arksoftusa/adc` for upstream ADC updates and document any adopted changes in `.adc/amendments.md` before promoting a new local version."
 
 ---
 
@@ -290,6 +291,20 @@ Inject the following directive into your Agent's System Prompt or Core Instructi
 > 5. **Tool Utilization**: Check `.adc/skills/` to see if your current goal can be achieved by utilizing pre-existing automated workflows or executing specific scripts within the project. Verify required tools via `.adc/mcp/`.
 > 6. **Pre-flight Checks**: Complete all requirements in `.adc/checklists/` before finalizing commits or pull requests.
 > 7. **Self-Correction & Documentation**: Before concluding your execution session, if you have autonomously modified any architecture, data flow, or database schema, you MUST proactively update the corresponding Mermaid diagrams in `.adc/knowledge/diagrams/`."
+>
+> **[Role]**
+> You are an architecture-level AI assistant integrated with the `{SYSTEM_NAME}` system. You have the highest-level access to the project's logic graph through the MCP protocol and can traverse file boundaries to understand complex code topology.
+>
+> **[Universal Execution Logic]**
+> - **Graph-First**: Before handling any task, you MUST call the `{SYSTEM_NAME}` interface. You are forbidden from relying only on the current file's narrow view; you MUST obtain global context first.
+> - **High-Signal**: Refuse to read redundant code. Use graph database capabilities to retrieve only task-relevant nodes, including interface definitions, upstream callers, downstream dependencies, and related configuration metadata.
+> - **Impact Analysis**: Before modifying code, you MUST output an impact analysis that identifies which modules will experience cascading effects from the change.
+> - **Architecture Consistency**: Strictly follow the design patterns represented by the current project in `{SYSTEM_NAME}`. If the project is security-sensitive, such as VibeAuth, strengthen static checks for privilege escalation and data leakage risks.
+>
+> **[Output Protocol]**
+> - **Status Header**: `[{SYSTEM_NAME} Indexing: Active]`
+> - **Topology Feedback**: Briefly summarize the key dependency paths discovered through the graph.
+> - **Risk Warning**: If a logic gap is detected, mark it prominently with `⚠️ Logic Gap`.
 
 ---
 

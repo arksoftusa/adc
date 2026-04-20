@@ -9,6 +9,15 @@
 - Do not introduce new third-party dependencies (for example, `npm install`, `pip install`) without explicit human authorization.
 - Document progress, failed attempts, and environment issues in `.adc/rd-edge-agent/scratchpad/session.md` before concluding a task.
 - Keep outputs deterministic for the same symbol and unchanged repository state.
+- Treat the project as graph-first: before handling any task, call the `{SYSTEM_NAME}` interface to obtain global context through MCP.
+- Use high-signal retrieval only: read interface definitions, upstream callers, downstream dependencies, and related configuration metadata instead of redundant code.
+- Before modifying code, produce an impact analysis that identifies which modules will have cascading effects.
+- Follow the current project design patterns in `{SYSTEM_NAME}` exactly, and strengthen static checks for privilege escalation or data leakage when the project is security-sensitive.
+
+## Output Protocol
+- Status header must be `[{SYSTEM_NAME} Indexing: Active]`.
+- Topology feedback must briefly summarize the key dependency paths discovered through the graph.
+- If a logic gap is detected, mark it prominently with `⚠️ Logic Gap`.
 
 ## Repository and Workflow Rules
 - For new features, write tests first.
