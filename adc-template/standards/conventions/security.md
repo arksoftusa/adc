@@ -35,6 +35,7 @@
 - **Security-First Versioning**: Treat security fixes as highest-priority releases and publish versioned patch notes with risk and remediation context.
 - **Patch Cadence Policy**: Apply routine dependency and base-image updates on a fixed schedule, with emergency out-of-band patches for critical vulnerabilities.
 - **Risk-Based Prioritization**: Prioritize updates by exploitability and asset exposure, not only by CVSS score.
+- **Upstream ADC Review Cadence**: On a fixed schedule, review `github.com/arksoftusa/adc` for upstream ADC changes and reconcile the local constitution with the latest approved version before the next release.
 - **Time-Bounded Exceptions**: Any temporary vulnerability exception MUST include owner, justification, and explicit expiry date enforced in CI.
 - **Canary and Rollback Safety**: Roll out sensitive security updates in stages and maintain tested rollback paths for failed deployments.
 - **Compatibility and Regression Gates**: Security-related upgrades MUST pass automated tests, policy checks, and smoke validation before merge.
