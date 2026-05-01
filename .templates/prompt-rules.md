@@ -2,7 +2,7 @@
 
 ## Mandatory Core Rules
 - Use absolute paths when importing modules.
-- For every ADC update, increment README version and update README date in the same change.
+- For every template or constitution update, increment README version and update README date in the same change.
 - Do not bypass safety checks in `.adc/standards/conventions/security.md`.
 - Follow Test-Driven Development (TDD) in `.adc/standards/conventions/testing.md`.
 - Default frontend theme and layout should closely match `https://admin-demo.vuestic.dev`, with dark theme as the default.

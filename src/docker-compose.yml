@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: src/Dockerfile.gateway.prod
-    container_name: your-app-gateway
+    container_name: app-gateway
     restart: unless-stopped
     expose:
       - '8080'
@@ -11,18 +11,18 @@ services:
       - coolify.managed=true
       - traefik.enable=true
       - traefik.docker.network=z00ws84oc40g48wo0kk844ws
-      - traefik.http.routers.your-app-gateway-https.entryPoints=https
-      - traefik.http.routers.your-app-gateway-https.rule=Host(`your-domain.com`)
-      - traefik.http.routers.your-app-gateway-https.tls=true
-      - traefik.http.services.your-app-gateway.loadbalancer.server.port=8080
-      - traefik.http.routers.your-app-gateway-http.entryPoints=http
-      - traefik.http.routers.your-app-gateway-http.rule=Host(`your-domain.com`)
-      - traefik.http.routers.your-app-gateway-http.middlewares=redirect-to-https
+      - traefik.http.routers.app-gateway-https.entryPoints=https
+      - traefik.http.routers.app-gateway-https.rule=Host(`example.com`)
+      - traefik.http.routers.app-gateway-https.tls=true
+      - traefik.http.services.app-gateway.loadbalancer.server.port=8080
+      - traefik.http.routers.app-gateway-http.entryPoints=http
+      - traefik.http.routers.app-gateway-http.rule=Host(`example.com`)
+      - traefik.http.routers.app-gateway-http.middlewares=redirect-to-https
     depends_on:
       - api
       - frontend
     networks:
-      - your-app-network
+      - app-network
     healthcheck:
       test:
         - CMD
@@ -39,7 +39,7 @@ services:
     build:
       context: .
       dockerfile: src/Dockerfile.prod
-    container_name: your-app-api
+    container_name: app-api
     restart: unless-stopped
     expose:
       - '8000'
@@ -69,7 +69,7 @@ services:
       postgres:
         condition: service_healthy
     networks:
-      - your-app-network
+      - app-network
     command: 'uvicorn src.backend.main:app --host 0.0.0.0 --port 8000 --workers 4'
     healthcheck:
       test:
@@ -88,23 +88,23 @@ services:
       args:
         - 'VUESTIC_ADMIN_REPO=https://github.com/epicmaxco/vuestic-admin'
         - 'VUESTIC_ADMIN_REF=master'
-        - 'NEXT_PUBLIC_API_URL=https://your-domain.com'
-        - 'API_URL=https://your-domain.com'
-    container_name: your-app-frontend
+        - 'NEXT_PUBLIC_API_URL=https://example.com'
+        - 'API_URL=https://example.com'
+    container_name: app-frontend
     restart: unless-stopped
     expose:
       - '3000'
     environment:
-      - 'NEXT_PUBLIC_API_URL=https://your-domain.com'
+      - 'NEXT_PUBLIC_API_URL=https://example.com'
       - NODE_ENV=production
-      - 'API_URL=https://your-domain.com'
+      - 'API_URL=https://example.com'
     labels:
       - coolify.managed=true
       - traefik.enable=false
     depends_on:
       - api
     networks:
-      - your-app-network
+      - app-network
     healthcheck:
       test:
         - CMD
@@ -119,12 +119,12 @@ services:
       start_period: 40s
   redis:
     image: 'redis:7-alpine'
-    container_name: your-app-redis
+    container_name: app-redis
     restart: unless-stopped
     volumes:
       - 'redis_data:/data'
     networks:
-      - your-app-network
+      - app-network
     command: 'redis-server --appendonly yes'
     healthcheck:
       test:
@@ -136,7 +136,7 @@ services:
       retries: 3
   postgres:
     image: 'pgvector/pgvector:pg16'
-    container_name: your-app-postgres
+    container_name: app-postgres
     restart: unless-stopped
     environment:
       - 'POSTGRES_DB=${POSTGRES_DB:-appdb}'
@@ -145,7 +145,7 @@ services:
     volumes:
       - 'postgres_data:/var/lib/postgresql/data'
     networks:
-      - your-app-network
+      - app-network
     healthcheck:
       test:
         - CMD-SHELL
@@ -159,5 +159,5 @@ volumes:
   redis_data:
     driver: local
 networks:
-  your-app-network:
+  app-network:
     driver: bridge

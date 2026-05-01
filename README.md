@@ -1,19 +1,17 @@
 ﻿# Autonomous Development Constitution (ADC)
 
-**Version:** 1.1.8  
+**Version:** 1.1.15  
 **Status:** Published  
 **Author:** Nate Scott  
 **Date:** 2026-04-30
 
 ## 1. Introduction
 
-The **Autonomous Development Constitution (ADC)** is a standardized framework designed to provide highly structured context for large codebases, AI assistants (agents), and human developers. 
+The **Autonomous Development Constitution (ADC)** is a reusable framework for organizing project context, conventions, and implementation guidance in a way that scales across many codebases.
 
-The core philosophy of ADC is to manage the "soul of the project" (architecture, conventions, domain knowledge, and AI instructions) alongside the "body of the project" (the source code). It acts as the absolute **"Digital Constitution"** of the repository.
+The core philosophy of ADC is to keep project rules, domain knowledge, and workflow guidance alongside the source code in a predictable structure. It acts as a durable reference layer for both AI assistants and human developers.
 
-Unlike traditional documentation, ADC is specifically optimized for both **AI Agents (Coding Assistants)** and **newly onboarded developers**. It ensures that both can acquire the most accurate project context in the shortest possible time, thereby eliminating issues where AI generates code that violates team conventions or humans fail to grasp historical architectural decisions.
-
-By design, all ADC materials are stored within a hidden `.adc/` directory at the project root. The `.` prefix ensures that the Constitution remains distinctly separated from application source code, preventing clutter in regular IDE tree views while remaining instantly discoverable to any AI scanner workflow.
+By design, governance materials are stored within a hidden `.adc/` directory at the project root. The `.` prefix keeps rule files separate from application source code while remaining easy for tooling and editors to discover.
 
 ---
 
@@ -43,7 +41,7 @@ Here is the standard structure of a `.adc/` directory:
 .adc/
 ├── index.md                  # [Required] Core context entry point, containing global architecture and basic info.
 ├── prompt-rules.md           # [Required] Dedicated system prompt rules and mandatory instructions for AI assistants.
-├── bootstrap.md              # [Required] Exact terminal commands to install dependencies, run DBs, and start local dev servers.
+├── bootstrap.md              # [Required] Exact terminal commands to install dependencies, run local services, and start local dev servers.
 │
 ├── planning/                 # [Project Management Domain]
 │   ├── status.md             # [Required] Current project phase, active goals, and recent major changes.
@@ -52,13 +50,13 @@ Here is the standard structure of a `.adc/` directory:
 │
 ├── standards/                # [Specifications & Conventions Domain]
 │   ├── conventions/          # [Optional] Directory containing specific coding conventions split by domain.
-│   │   ├── structure.md      # Project layout rules (src, docs, dist) and .env management.
+│   │   ├── structure.md      # Project layout rules and environment management.
 │   │   ├── frontend.md       # Frontend component/styling conventions.
 │   │   ├── backend.md        # Backend API design/database conventions.
-│   │   ├── data-engineering.md # Database schemas, caching (Redis), message queues, and vector DB rules.
+│   │   ├── data-engineering.md # Database schemas, caching, message queues, and vector DB rules.
 │   │   ├── performance.md    # Performance budgets, Big-O limits, and optimization strategies.
 │   │   ├── observability.md  # Logging formats, metrics, and distributed tracing rules.
-│   │   ├── security.md       # Secure coding practices, CVE/CVSS limits, and vulnerability management.
+│   │   ├── security.md       # Secure coding practices and vulnerability management.
 │   │   ├── devops.md         # Docker, CI/CD, and deployment conventions (e.g., container constraints).
 │   │   └── testing.md        # Strict testing guidelines (unit/e2e coverage, mocking rules).
 │   ├── checklists/           # [Optional] Pre-flight checklists the AI must complete before specific actions (e.g., PR creation).
@@ -76,7 +74,7 @@ Here is the standard structure of a `.adc/` directory:
 │       ├── architecture.mmd
 │       └── data-flow.mmd
 │
-└── rd-edge-agent/            # [Dynamic RD Edge Agent Workspace]
+└── rd-edge-agent/            # [Dynamic agent workspace]
     ├── tasks/                # [Optional] Atomic task management queue for tracking multi-agent or multi-step execution.
     │   ├── done/
     │   ├── in-progress/
@@ -146,15 +144,15 @@ By defining a domain glossary, AI assistants will be significantly more accurate
 
 ### 3.4 `conventions/` (Domain-Specific Conventions)
 To prevent overwhelming the AI's context window with irrelevant information, massive documentation files are split by domain.
-Instead of providing the entire documentation at once, the AI can load these files on-demand. For instance, if the AI is tasked with updating the React UI, it only needs to read `.adc/standards/conventions/frontend.md`, saving tokens and focusing its attention purely on frontend constraints.
+Instead of providing the entire documentation at once, the AI can load these files on-demand. For instance, if the AI is tasked with updating the UI, it only needs to read `.adc/standards/conventions/frontend.md`, saving tokens and focusing its attention purely on frontend constraints.
 
 ### 3.5 `skills/` (Actionable AI Skills)
 To evolve the AI from merely "understanding static rules" to "executing complex project-specific actions," ADC introduces the `skills/` directory.
 
 A "Skill" is an advanced extension pack (Instruction Set) that grants the AI specialized capabilities for recurring complex tasks.
 Example use cases:
-- `.adc/skills/generate-ui/SKILL.md`: Teaches the AI exactly how to use the company's proprietary UI component library, pointing to reference examples and automated scripts.
-- `.adc/skills/run-migrations/SKILL.md`: Guides the AI on how to correctly generate, review, and execute database migrations within this specific project's environment.
+- `.adc/skills/generate-ui/SKILL.md`: Teaches the AI how to use the project's UI component library, pointing to reference examples and automated scripts.
+- `.adc/skills/run-migrations/SKILL.md`: Guides the AI on how to correctly generate, review, and execute database migrations within the project's environment.
 
 ### 3.6 `.adcignore` (AI Context Exclusion)
 Much like `.gitignore` prevents files from being checked into version control, `.adcignore` instructs AI Assistants on which paths to **STRICTLY EXCLUDE** from their context reading.
@@ -175,8 +173,8 @@ AI assistants need to know the current and future trajectory of the project to a
 - **`development-phases.md`**: Breaks down the roadmap into actionable, granular development phases, acting as a step-by-step master plan for the AI to follow.
 
 ### 3.9 `adr/` (Architecture Decision Records)
-To prevent the AI from generating "hallucinated" architectural suggestions (e.g., "Why not rewrite this in GraphQL?"), the `adr/` directory stores historical context.
-By reading `001-why-we-abandoned-graphql.md`, the AI learns the historical constraints and avoids proposing solutions that have already failed in the past.
+To prevent the AI from generating "hallucinated" architectural suggestions, the `adr/` directory stores historical context.
+By reading the relevant ADRs, the AI learns the historical constraints and avoids proposing solutions that have already failed in the past.
 
 ### 3.10 `known-issues.md` (Technical Debt & No-Touch Zones)
 A manifest of "spaghetti code" or fragile legacy modules.
@@ -229,7 +227,7 @@ This file establishes strict boundaries for where certain types of files must li
 - **Environment Variables**: "Absolutely NO real secrets or API keys are to be written or hallucinated. Whenever a new environment variable is needed, you MUST declare it in `.env.example` first with dummy values. Do NOT auto-generate or modify a real `.env` file unless explicitly instructed for local debugging."
 - **Source Code Integrity**: "All core business logic and application source code MUST be placed exclusively within the `src/` directory. Root-level software logic (other than standard config files) is strictly forbidden."
 - **Documentation**: "All non-contextual, user-facing, or API documentation MUST reside within the `docs/` directory, keeping it separate from the `.adc/` internal context."
-- **Compiled Assets**: "All compiled or bundled software output MUST be directed to `src/dist/` within the source tree. For consistency, final artifacts are organized in `src/dist/release/`, pre-production artifacts in `src/dist/staging/`, and intermediate build cache files in `src/dist/build/`. This keeps all build outputs under source control boundary while maintaining clear separation."
+- **Compiled Assets**: "All compiled or bundled software output MUST be directed to `dist/` at the project root. For consistency, final artifacts are organized in `dist/release/`, pre-production artifacts in `dist/staging/`, and intermediate build cache files in `dist/build/`. This keeps all build outputs outside the application source tree while maintaining clear separation."
 - **Utility Scripts**: "All supplementary bash, python, or Node.js scripts used for building, deploying, or local development MUST be placed in `src/script/` (or `script/` if a project has top-level scripts). No dangling scripts should exist at the project root."
 - **Versioning Constraints (`.gitignore`)**: "A `.gitignore` file MUST exist at the root. AI assistants MUST automatically ignore common local cache, IDE configs, dependency folders (`node_modules`), logs, and compiled outputs unless explicitly instructed otherwise."
 - **CI/CD & Workflows (`.github/`)**: "All GitHub Actions, issue templates, and pull request templates MUST be centralized in the `.github/` directory. AI agents MUST respect and update these workflows when adding new deployment or testing stages."
@@ -253,26 +251,26 @@ To ensure that human developers always have an accurate mental model of the syst
 - **Diagram Types**: "Maintain at least three baseline diagrams: `architecture.mmd` (high-level system design), `data-flow.mmd` (how data moves between services), and `schema.mmd` (database entity relationships)."
 
 ### 3.19 `mcp/` (Model Context Protocol Configurations)
-To achieve true project portability for AI Agents, the project must ship with its own toolsets. The `.adc/mcp/` directory stores the configuration files required to bootstrap **Model Context Protocol (MCP)** servers.
-- **Portability**: "When cloning this repository on a new machine, the user or AI can directly import `.adc/mcp/mcp-servers.json` into their local AI client (like Cursor or Claude Desktop) to instantly gain access to the project's dedicated database connections, API wrappers, or internal corporate context tools."
-- **Constraint**: "Any new external integrations (e.g., adding a PostgreSQL database) MUST be accompanied by an update to the MCP configuration so that future AI agents inherit the ability to query that database directly."
-- **RD Bootstrap Indexing**: "After integrating RD Edge Agent and RD MCP Server for a project, you MUST initialize one full-project index through RD before executing feature tasks. Subsequent updates MUST use incremental indexing on changed files."
-- **RD Policy Rule**: "Use RD Edge Agent workspace files (`.adc/rd-edge-agent/tasks/`, `.adc/rd-edge-agent/scratchpad/`) for orchestration state only. Canonical requirements and architecture decisions MUST remain in planning/standards/knowledge files."
-- **RD Execution Rule**: "RD MCP integrations are for retrieval/indexing and external context operations. Local build/test/deploy execution MUST remain on native project tooling."
-- **RD Secret Rule**: "RD credentials (`RD_PROJECT_ID`, `RD_MCP_TOKEN`, `RD_EDGE_AGENT_TOKEN`) MUST be injected through environment variables and MUST NOT be committed in tracked files."
+To achieve portability for AI agents, the project can ship with its own toolsets. The `.adc/mcp/` directory stores the configuration files required to bootstrap **Model Context Protocol (MCP)** servers.
+- **Portability**: "When cloning this repository on a new machine, the user or AI can import `.adc/mcp/mcp-servers.json` into a local AI client to gain access to project-specific tools and context sources."
+- **Constraint**: "Any new external integration SHOULD be accompanied by an update to the MCP configuration so that future AI agents inherit the ability to query that system directly."
+- **Integration Indexing**: "After integrating an external agent or MCP-backed service for a project, initialize one full-project index before executing feature tasks. Subsequent updates SHOULD use incremental indexing on changed files."
+- **Workspace Rule**: "Use `.adc/rd-edge-agent/tasks/` and `.adc/rd-edge-agent/scratchpad/` for orchestration state only. Canonical requirements and architecture decisions MUST remain in planning/standards/knowledge files."
+- **Execution Rule**: "MCP integrations are for retrieval/indexing and external context operations. Local build/test/deploy execution MUST remain on native project tooling."
+- **Secret Rule**: "Credentials MUST be injected through environment variables and MUST NOT be committed in tracked files."
 
 ### 3.20 `checklists/` (Autonomous Pre-Flight Checks)
-For high-end autonomous systems, deterministic checklists prevent AI from cutting corners.
-- **Execution Rule**: "Before generating a Git commit or a Pull Request, you MUST autonomously read `.adc/checklists/pr-review.md` and verify each item (e.g., 'Are all tests passing?', 'Are resource limits defined in Docker?', 'Is the code documented?'). You MUST output a generated report confirming the checklist was completed."
+For autonomous workflows, deterministic checklists prevent AI from cutting corners.
+- **Execution Rule**: "Before generating a Git commit or a Pull Request, you MUST autonomously read `.adc/checklists/pr-review.md` and verify each item. You MUST output a generated report confirming the checklist was completed."
 
 ### 3.21 `amendments.md` (Constitutional Amendment Protocol)
-Since the ADC acts as the absolute Digital Constitution, altering core rules (like testing enforcement or security boundaries) requires a formalized "Constitutional Amendment" process.
+Since this constitution defines the repository's core rules, altering those rules requires a formalized amendment process.
 **Example constraints to include:**
 - **Amendment Proposals**: "Any change to the `.adc/` directory by an AI Agent MUST be submitted as an independent Pull Request titled prefix `[AMENDMENT]`. AI Agents are strictly forbidden from committing changes directly to the `main` branch if they affect the `.adc/` ruleset."
-- **Human Ratification**: "An AI Agent CANNOT self-approve amendments. All changes to the Constitution require explicit human review and approval."
+- **Human Ratification**: "An AI Agent CANNOT self-approve amendments. All changes to the constitution require explicit human review and approval."
 - **Documenting Amendments**: "Every ratified change must be logged chronologically in `.adc/amendments.md`, detailing the date, the rule altered, and the specific reason for the governance shift."
 - **Versioning**: "Significant changes to the constitution (e.g., adding a new `conventions/` domain) require bumping the MAJOR or MINOR version declared in `index.md`."
-- **Upstream Synchronization**: "The maintainer MUST periodically review `github.com/arksoftusa/adc` for upstream ADC updates and document any adopted changes in `.adc/amendments.md` before promoting a new local version."
+- **Upstream Synchronization**: "The maintainer SHOULD periodically review the authoritative upstream source for updates and document any adopted changes in `.adc/amendments.md` before promoting a new local version."
 
 ---
 
@@ -282,8 +280,8 @@ Whether you are configuring a reactive coding assistant (like Cursor or GitHub C
 
 Inject the following directive into your Agent's System Prompt or Core Instruction Set:
 
-> **[ADC INITIALIZATION & EXECUTION PROTOCOL]**
-> "As an AI Assistant or Autonomous Agent, before planning, reasoning, or executing ANY task, you MUST check if a `.adc/` directory exists at the project root. This directory contains the **Digital Constitution** of this project. If it exists, you are strictly bound by its rules. You CANNOT bypass its core constraints (especially Security and DevOps limits) unless the human user explicitly instructs you to modify the Constitution itself. You MUST self-onboard and act iteratively:
+> **[INITIALIZATION & EXECUTION PROTOCOL]**
+> "As an AI Assistant or Autonomous Agent, before planning, reasoning, or executing ANY task, you MUST check if a `.adc/` directory exists at the project root. This directory contains the project's governing rules. If it exists, you are strictly bound by its rules. You CANNOT bypass its core constraints (especially Security and DevOps limits) unless the human user explicitly instructs you to modify the governing rules themselves. You MUST self-onboard and act iteratively:
 > 
 > 1. **Self-Onboarding**: Read `.adc/index.md`, `.adc/status.md`, and `.adc/development-phases.md` FIRST to establish your macro-level plan and ensure your autonomous reasoning aligns with the current sprint phase.
 > 2. **Risk Mitigation**: Read `.adc/known-issues.md` before planning any refactoring to identify 'No-Touch Zones' and historical technical debt.
@@ -294,13 +292,13 @@ Inject the following directive into your Agent's System Prompt or Core Instructi
 > 7. **Self-Correction & Documentation**: Before concluding your execution session, if you have autonomously modified any architecture, data flow, or database schema, you MUST proactively update the corresponding Mermaid diagrams in `.adc/knowledge/diagrams/`."
 >
 > **[Role]**
-> You are an architecture-level AI assistant integrated with the `{SYSTEM_NAME}` system. You have the highest-level access to the project's logic graph through the MCP protocol and can traverse file boundaries to understand complex code topology.
+> You are an architecture-level AI assistant integrated with the `{SYSTEM_NAME}` system. You have high-level access to the project's logic graph through the MCP protocol and can traverse file boundaries to understand complex code topology.
 >
 > **[Universal Execution Logic]**
 > - **Graph-First**: Before handling any task, you MUST call the `{SYSTEM_NAME}` interface. You are forbidden from relying only on the current file's narrow view; you MUST obtain global context first.
 > - **High-Signal**: Refuse to read redundant code. Use graph database capabilities to retrieve only task-relevant nodes, including interface definitions, upstream callers, downstream dependencies, and related configuration metadata.
 > - **Impact Analysis**: Before modifying code, you MUST output an impact analysis that identifies which modules will experience cascading effects from the change.
-> - **Architecture Consistency**: Strictly follow the design patterns represented by the current project in `{SYSTEM_NAME}`. If the project is security-sensitive, such as VibeAuth, strengthen static checks for privilege escalation and data leakage risks.
+> - **Architecture Consistency**: Strictly follow the design patterns represented by the current project in `{SYSTEM_NAME}`. If the project is security-sensitive, strengthen static checks for privilege escalation and data leakage risks.
 >
 > **[Output Protocol]**
 > - **Status Header**: `[{SYSTEM_NAME} Indexing: Active]`
