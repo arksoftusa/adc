@@ -13,17 +13,17 @@ This report captures the latest repository structure and convention updates requ
    - RD Edge Agent integration guidance
    - RD MCP Server integration guidance
 3. Standardized build output location to `src/dist`.
-4. Added and standardized runtime log location at `src/log`.
-5. Renamed source utility scripts folder from `src/scripts` to `src/script` and aligned documentation references.
+4. Added and standardized runtime log location at `logs/`.
+5. Confirmed operational scripts remain in `src/scripts/` and test suite remains in `src/tests/`.
 6. Added terminology glossary file with workflow and platform terms, including CPMD.
 
 ## Current Repository Structure
 - Source code package: `src/backend/`
 - Test suite: `src/tests/`
 - Operational scripts: `src/scripts/`
-- Runtime logs directory: `src/logs/`
+- Runtime logs directory: `logs/`
 - Public/project documentation: `docs/`
-- ADC template source: `adc-template/`
+- ADC template source: `.templates/`
 
 ## Workflow Term
 - CPMD: checkin, push, merge, deploy.

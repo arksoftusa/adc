@@ -218,11 +218,11 @@ All stateful services in templates must use persistent named volumes.
 Copy the template you want and adjust image names, env vars, domains, and volumes.
 
 ```powershell
-Copy-Item docs/docker-compose-templates/compose.web-postgres-redis.yml docker-compose.yml
+Copy-Item docs/docker-compose-templates/compose.web-postgres-redis.yml src/docker-compose.yml
 ```
 
 Then run:
 
 ```powershell
-docker compose up -d
+docker compose -f src/docker-compose.yml up -d
 ```

@@ -9,7 +9,7 @@ def _read(rel_path: str) -> str:
 
 
 def test_prompt_rules_has_core_quality_sections() -> None:
-    content = _read("adc-template/prompt-rules.md")
+    content = _read(".templates/prompt-rules.md")
 
     required_sections = [
         "## Mandatory Core Rules",
@@ -25,7 +25,7 @@ def test_prompt_rules_has_core_quality_sections() -> None:
 
 
 def test_security_convention_has_patch_and_update_strategies() -> None:
-    content = _read("adc-template/standards/conventions/security.md")
+    content = _read(".templates/standards/conventions/security.md")
 
     required_entries = [
         "## Version, Update, and Patch Security Strategies",
@@ -40,7 +40,7 @@ def test_security_convention_has_patch_and_update_strategies() -> None:
 
 
 def test_testing_convention_has_quality_strategy_section() -> None:
-    content = _read("adc-template/standards/conventions/testing.md")
+    content = _read(".templates/standards/conventions/testing.md")
 
     required_entries = [
         "## Common Test and Software Quality Strategies",
@@ -55,7 +55,7 @@ def test_testing_convention_has_quality_strategy_section() -> None:
 
 
 def test_devops_convention_has_cicd_gitea_coolify_policy() -> None:
-    content = _read("adc-template/standards/conventions/devops.md")
+    content = _read(".templates/standards/conventions/devops.md")
 
     required_entries = [
         "## CI/CD Policy (Gitea + Coolify)",
@@ -89,7 +89,7 @@ def test_cicd_setup_script_exists_and_has_confirmation_gate() -> None:
 
 def test_cicd_preflight_gate_policy_is_explicit() -> None:
     script = _read("src/scripts/setup-cicd-gitea-coolify.ps1")
-    runbook = _read("adc-template/standards/runbooks/002-cicd-gitea-coolify-debug.md")
+    runbook = _read(".templates/standards/runbooks/002-cicd-gitea-coolify-debug.md")
 
     script_required_entries = [
         "CI/CD setup is disabled",
@@ -119,7 +119,7 @@ def test_all_powershell_scripts_live_under_src_scripts() -> None:
 
 
 def test_devops_convention_has_required_compose_healthcheck_block() -> None:
-    content = _read("adc-template/standards/conventions/devops.md")
+    content = _read(".templates/standards/conventions/devops.md")
 
     required_entries = [
         "## Docker Compose Health Check Policy",

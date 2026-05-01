@@ -7,7 +7,7 @@ param(
     [switch]$Detached,
 
     [Parameter(Mandatory = $false)]
-    [string]$ComposeFile = 'docker-compose.yml',
+    [string]$ComposeFile = 'src/docker-compose.yml',
 
     [Parameter(Mandatory = $false)]
     [string]$FallbackComposeFile = 'docs/docker-compose-templates/compose.pgadmin-postgres.yml'

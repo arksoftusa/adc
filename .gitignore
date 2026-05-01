@@ -85,7 +85,7 @@ out/
 # Autonomous Development Constitution (ADC)
 # Note: Do not ignore .adc/ itself as it contains the constitution!
 # You should however ignore temporary AI outputs or raw generated templates if you don't track them.
-# adc-template/  # Uncomment if you want to ignore the generated template test output
+# .templates/  # Uncomment if you want to ignore the generated template test output
 
 *.ps1
 !src/scripts/*.ps1

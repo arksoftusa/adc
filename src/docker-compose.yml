@@ -2,7 +2,7 @@ services:
   gateway:
     build:
       context: .
-      dockerfile: Dockerfile.gateway.prod
+      dockerfile: src/Dockerfile.gateway.prod
     container_name: your-app-gateway
     restart: unless-stopped
     expose:
@@ -38,7 +38,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: Dockerfile.prod
+      dockerfile: src/Dockerfile.prod
     container_name: your-app-api
     restart: unless-stopped
     expose:
@@ -84,7 +84,7 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: Dockerfile.frontend.prod
+      dockerfile: src/Dockerfile.frontend.prod
       args:
         - 'VUESTIC_ADMIN_REPO=https://github.com/epicmaxco/vuestic-admin'
         - 'VUESTIC_ADMIN_REF=master'

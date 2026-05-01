@@ -1,9 +1,9 @@
 ﻿# Autonomous Development Constitution (ADC)
 
-**Version:** 1.1.7  
+**Version:** 1.1.8  
 **Status:** Published  
 **Author:** Nate Scott  
-**Date:** 2026-04-19
+**Date:** 2026-04-30
 
 ## 1. Introduction
 
@@ -215,6 +215,7 @@ A black-box production environment is a disaster waiting to happen. To maintain 
 ### 3.15 `conventions/devops.md` (Docker & Infrastructure Constraints)
 For projects heavily reliant on containerization, this file dictates strict rules for infrastructure code.
 When an AI assistant is asked to write Dockerfiles, `docker-compose.yml`, or CI/CD pipelines, this convention enforces security and performance baselines.
+- Note: Docker manifests now live under `src/` instead of the repository root.
 **Example constraints to include:**
 - **Resource Limits**: "All Docker containers MUST be created with CPU and Memory limits (e.g., `--memory=\"512m\" --cpus=\"1.0\"`)."
 - **Parameter Passing**: "Resource limits MUST be passed dynamically to the container via environment variables or Orchestration tools, never hardcoded in scripts."
