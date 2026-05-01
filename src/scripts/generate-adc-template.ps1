@@ -1,4 +1,4 @@
-$TargetDir = "d:\Repos\ARKSOFT\PCS\adc-template"
+$TargetDir = "d:\Repos\ARKSOFT\ADC\.templates"
 
 Write-Host "Generating ADC template at $TargetDir ..."
 New-Item -ItemType Directory -Force -Path $TargetDir | Out-Null
@@ -23,7 +23,7 @@ New-Item -ItemType Directory -Force -Path "$TargetDir\rd-edge-agent\skills\sampl
 $Files = @{
     "index.md" = @'
 ---
-project-name: "Agentic Boilerplate Project"
+project-name: "Reusable Project Template"
 version: "1.0.0"
 description: "A reference implementation of the Autonomous Development Constitution (ADC)."
 tech-stack:
@@ -363,7 +363,7 @@ sequenceDiagram
 
     "adcignore" = @'
 node_modules/
-src/dist/
+dist/
 build/
 .env
 .git/

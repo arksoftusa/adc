@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-app = FastAPI(title="ADC FastAPI Service")
+app = FastAPI(title="Project API Service")
 
 
 @app.get("/health")

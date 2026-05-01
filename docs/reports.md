@@ -1,18 +1,18 @@
 # Project Update Report
 
 Date: 2026-03-26
-Repository: ADC
+Repository: Template Base
 
 ## Scope
 This report captures the latest repository structure and convention updates requested during the current session.
 
 ## Completed Changes
-1. Renamed ADC workspace folder from `agent-workspace` to `rd-edge-agent` under the template.
-2. Added Repodepot integration requirements:
-   - Repodepot project registration endpoint
-   - RD Edge Agent integration guidance
-   - RD MCP Server integration guidance
-3. Standardized build output location to `src/dist`.
+1. Renamed the workspace folder from `agent-workspace` to `rd-edge-agent` under the template.
+2. Added optional integration guidance:
+   - Project registration guidance
+   - Edge agent integration guidance
+   - MCP server integration guidance
+3. Standardized build output location to `dist`.
 4. Added and standardized runtime log location at `logs/`.
 5. Confirmed operational scripts remain in `src/scripts/` and test suite remains in `src/tests/`.
 6. Added terminology glossary file with workflow and platform terms, including CPMD.
@@ -23,7 +23,7 @@ This report captures the latest repository structure and convention updates requ
 - Operational scripts: `src/scripts/`
 - Runtime logs directory: `logs/`
 - Public/project documentation: `docs/`
-- ADC template source: `.templates/`
+- Template source: `.templates/`
 
 ## Workflow Term
 - CPMD: checkin, push, merge, deploy.

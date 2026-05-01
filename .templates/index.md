@@ -1,7 +1,7 @@
 ---
 project-name: "Agentic Boilerplate Project"
 version: "1.0.0"
-description: "A reference implementation of the Autonomous Development Constitution (ADC)."
+description: "A reusable starter template for consistent project structure and guidance."
 tech-stack:
   - React 18
   - Node.js 20
@@ -12,23 +12,14 @@ entry-points:
 ---
 
 # Project Overview
-This project serves as a reference implementation of the ADC standard. 
-It defines the exact rules, constraints, and architecture that AI Agents must follow.
+This template provides a reusable baseline for project structure, documentation, and workflow conventions.
 
 ## Core Modules
 - `src/api`: Core backend services
 - `src/web`: Frontend React application
-- `src/rd-mcp`: Repodepot MCP Server (local implementation)
-- `src/rd-edge-agent`: Repodepot Edge Agent (local execution and orchestration)
 
 ## Required Integrations
-This project **MUST** integrate with the Repodepot ecosystem:
-- **Repodepot Project**: Central repository and artifact management system (registration via `http://192.168.1.240:18080/getstarted`)
-- **RD Edge Agent** (`src/rd-edge-agent`): Local execution and orchestration agent
-- **RD MCP Server** (`src/rd-mcp`): Model Context Protocol server for programmatic Repodepot access
-- **Initial RD Indexing**: Immediately after RD Edge Agent + RD MCP Server integration, run full-project indexing once so retrieval/review tools can access the entire repository context.
-
-Both RD services are implemented locally within this project and must be started during bootstrap.
+Add only the integrations required by the downstream project. Keep this template neutral and move environment-specific wiring into project overlays or examples.
 
 ## Environment Requirements
 Refer to `bootstrap.md` for exact start-up commands.

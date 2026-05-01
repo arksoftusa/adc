@@ -32,7 +32,7 @@ jobs:
           if [ -f README.md ]; then
             cp README.md site/index.md
           else
-            echo "# ADC" > site/index.md
+            echo "# Template Base" > site/index.md
           fi
 
           if [ -d docs ]; then
