@@ -1,9 +1,9 @@
-﻿# Autonomous Development Constitution (ADC)
+# Autonomous Development Constitution (ADC)
 
-**Version:** 1.1.16  
-**Status:** Published  
-**Author:** Nate Scott  
-**Date:** 2026-04-30
+**Version:** 1.1.17
+**Status:** Published
+**Author:** Nate Scott
+**Date:** 2026-05-17
 
 ## 1. Introduction
 
@@ -276,13 +276,13 @@ Since this constitution defines the repository's core rules, altering those rule
 
 ## 4. How to Use ADC for AI Assistants & Autonomous Agents
 
-Whether you are configuring a reactive coding assistant (like Cursor or GitHub Copilot via `.cursorrules`) or defining the core processing loop for a **Fully Autonomous AI Agent**, your AI system requires strict environmental awareness. 
+Whether you are configuring a reactive coding assistant (like Cursor or GitHub Copilot via `.cursorrules`) or defining the core processing loop for a **Fully Autonomous AI Agent**, your AI system requires strict environmental awareness.
 
 Inject the following directive into your Agent's System Prompt or Core Instruction Set:
 
 > **[INITIALIZATION & EXECUTION PROTOCOL]**
 > "As an AI Assistant or Autonomous Agent, before planning, reasoning, or executing ANY task, you MUST check if a `.adc/` directory exists at the project root. This directory contains the project's governing rules. If it exists, you are strictly bound by its rules. You CANNOT bypass its core constraints (especially Security and DevOps limits) unless the human user explicitly instructs you to modify the governing rules themselves. You MUST self-onboard and act iteratively:
-> 
+>
 > 1. **Self-Onboarding**: Read `.adc/index.md`, `.adc/status.md`, and `.adc/development-phases.md` FIRST to establish your macro-level plan and ensure your autonomous reasoning aligns with the current sprint phase.
 > 2. **Risk Mitigation**: Read `.adc/known-issues.md` before planning any refactoring to identify 'No-Touch Zones' and historical technical debt.
 > 3. **Guideline Enforcement**: Read `.adc/prompt-rules.md` and STRICTLY adhere to the mandatory coding conventions throughout your autonomous execution loop.
@@ -336,4 +336,3 @@ How to view deployment status and URL:
 1. Open **GitHub -> Actions** and run **Deploy Docs To Pages**.
 2. After success, open **GitHub -> Settings -> Pages** to see the published site URL.
 3. The deployed URL is also exposed in the workflow job output (`github-pages` environment URL).
-
