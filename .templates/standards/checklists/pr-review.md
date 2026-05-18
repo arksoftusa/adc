@@ -8,3 +8,4 @@
 - [ ] If database/search logic changed, did I apply the correct `pgvector`/`sqlite-vec`/graph-database policy and index/query constraints?
 - [ ] Did I auto-update the Mermaid diagrams in `.adc/knowledge/diagrams/` to match my architectural modifications?
 - [ ] Are Docker CPU/Memory resource limits properly set as environment variables?
+- [ ] If ports were added, changed, reserved, or removed, did I update or verify the RD port registry and resolve conflicts?

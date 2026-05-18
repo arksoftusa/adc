@@ -10,8 +10,10 @@ Describe what changed and why.
 - [ ] `docs/deploy_key.md` is updated with the current public deploy key when deploy credentials changed
 - [ ] Mermaid diagrams were updated if architecture/data-flow/schema changed
 - [ ] Docker CPU/Memory limits are configured via env variables when applicable
+- [ ] RD port registry is updated or verified for any added, changed, reserved, or removed project port
 
 ## Policy Checklist
 
 - [ ] JWT/token entropy policy applied (algorithm, key strength, claims, TTL, rotation)
 - [ ] Data policy applied for pgvector/sqlite-vec/graph usage and index/query constraints
+- [ ] RD port registry entries cover all owned, exposed, or reserved ports touched by this change

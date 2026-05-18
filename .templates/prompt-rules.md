@@ -36,6 +36,7 @@
 - RD MCP must not replace local compile, lint, unit test, or integration test execution.
 - Treat scratchpad/task outputs as operational context, not canonical product truth.
 - Canonical rules must remain in `.adc/planning/`, `.adc/standards/`, and `.adc/knowledge/`.
+- Before adding or changing servers, Docker Compose port mappings, reverse proxy routes, health/metrics/admin endpoints, or default environment port values, register or verify every project port in RD and resolve conflicts before merging or deploying.
 - Inject `RD_MCP_TOKEN`, `RD_EDGE_AGENT_TOKEN`, and `RD_PROJECT_ID` via environment variables only.
 - Never write RD credentials into tracked files.
 - PRs changing RD integration behavior must update `.adc/bootstrap.md` and MCP server wiring, and include validation notes.

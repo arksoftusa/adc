@@ -1,6 +1,6 @@
 # Autonomous Development Constitution (ADC)
 
-**Version:** 1.1.17
+**Version:** 1.1.18
 **Status:** Published
 **Author:** Nate Scott
 **Date:** 2026-05-17
@@ -215,6 +215,7 @@ For projects heavily reliant on containerization, this file dictates strict rule
 When an AI assistant is asked to write Dockerfiles, `docker-compose.yml`, or CI/CD pipelines, this convention enforces security and performance baselines.
 - Note: Docker manifests now live under `src/` instead of the repository root.
 **Example constraints to include:**
+- **RD Port Registry**: "Every ADC-managed project MUST register every owned, exposed, or reserved port in RepoDepot before the port is used. Registrations MUST include project ID, environment, service name, protocol, bind host/interface, host port, container/internal port, purpose, exposure scope, source configuration path, owner, and last verified date. No new or changed port may be introduced until RD confirms that the port is available for the target environment. Dynamic port ranges must be registered with their allocation rules, and stale registrations must be retired when ports are removed."
 - **Resource Limits**: "All Docker containers MUST be created with CPU and Memory limits (e.g., `--memory=\"512m\" --cpus=\"1.0\"`)."
 - **Parameter Passing**: "Resource limits MUST be passed dynamically to the container via environment variables or Orchestration tools, never hardcoded in scripts."
 - **Base Images**: "You MUST ONLY use Alpine or specific distroless images from our official repository. Never use `:latest`."

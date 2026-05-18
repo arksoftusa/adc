@@ -11,16 +11,17 @@ This file defines the terminology, abbreviations, and shortcuts used in this tem
 | **ADC** | Autonomous Development Constitution | Standardized framework for managing project governance, AI instructions, and developer context in `.adc/` folder |
 | **GHC** | GitHub Copilot | Standard abbreviation for GitHub Copilot in this project documentation and discussion |
 | **MCP** | Model Context Protocol | Protocol for AI agents (like Copilot, Claude) to access external tools and data sources |
-| **RD** | Repodepot | Optional repository and artifact management system; use `RD` as shorthand only in projects that integrate it |
+| **RD** | RepoDepot | Repository, artifact, project, and port management system used by ADC-managed projects |
 
 ## Repodepot Components
 
 | Term | Definition |
 |---|---|
-| **Repodepot** | Optional artifact catalog, project registry, and orchestration service used by some deployments |
+| **RepoDepot** | Artifact catalog, project registry, port registry, and orchestration service used by ADC-managed deployments |
 | **RD MCP Server** | Model Context Protocol server for programmatic Repodepot access when that integration is enabled |
 | **RD Edge Agent** | Local execution and orchestration agent for RD-enabled projects |
 | **RD Getstarted** | Bootstrap endpoint for Repodepot registration when that ecosystem is used |
+| **RD Port Registry** | RepoDepot registry of project-owned, exposed, or reserved ports by project, service, environment, protocol, and exposure scope |
 
 ## Project Structure Terms
 

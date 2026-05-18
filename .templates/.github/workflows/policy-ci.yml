@@ -79,3 +79,8 @@ jobs:
             echo "Missing data policy checklist item in PR body."
             exit 1
           }
+
+          echo "$PR_BODY" | grep -qi "RD port registry" || {
+            echo "Missing RD port registry checklist item in PR body."
+            exit 1
+          }

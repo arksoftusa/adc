@@ -70,6 +70,29 @@ def test_devops_convention_has_cicd_gitea_coolify_policy() -> None:
         assert entry in content
 
 
+def test_rd_port_registry_policy_is_required_across_templates() -> None:
+    devops = _read(".templates/standards/conventions/devops.md")
+    prompt_rules = _read(".templates/prompt-rules.md")
+    pr_template = _read(".templates/.github/pull_request_template.md")
+    pr_checklist = _read(".templates/standards/checklists/pr-review.md")
+
+    devops_required_entries = [
+        "## RD Port Registry Policy",
+        "Every ADC-managed project MUST register every owned, exposed, or reserved port in RepoDepot before the port is used",
+        "host port",
+        "container port",
+        "environment",
+        "No new or changed port may be introduced until RD confirms that the port is available",
+    ]
+
+    for entry in devops_required_entries:
+        assert entry in devops
+
+    assert "register or verify every project port in RD" in prompt_rules
+    assert "RD port registry" in pr_template
+    assert "RD port registry" in pr_checklist
+
+
 def test_cicd_setup_script_exists_and_has_confirmation_gate() -> None:
     script = _read("src/scripts/setup-cicd-gitea-coolify.ps1")
 

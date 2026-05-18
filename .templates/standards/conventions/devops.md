@@ -20,6 +20,14 @@
 - **Traceability Requirement**: Any PR that introduces or changes RepoDepot integration MUST include a short "RepoDepot integration notes" section describing what step(s) from the onboarding URL were applied.
 - **MCP Alignment**: If RepoDepot integration adds or changes external service endpoints or credentials, `mcp-servers.json` MUST be updated in the same change set.
 
+## RD Port Registry Policy
+- **Mandatory Registration**: Every ADC-managed project MUST register every owned, exposed, or reserved port in RepoDepot before the port is used.
+- **Scope**: Register development, test, staging, production, CI, and local-remote ports, including web servers, APIs, WebSocket endpoints, reverse proxies, health, metrics, admin endpoints, Docker Compose published ports, project-owned databases, caches, message brokers, and reserved dynamic ranges.
+- **Required Fields**: Each RD record MUST include `project_id`, service name, environment, protocol, bind host/interface, host port, container port or internal port, purpose, exposure scope (`local`, `LAN`, `public`, or `container-only`), source config path, owner, and last verified date.
+- **Conflict Gate**: No new or changed port may be introduced until RD confirms that the port is available for the target environment. Conflicts MUST be resolved in RD before code or configuration merge.
+- **Lifecycle**: Retire or update RD port records in the same change that removes, repurposes, or moves a port.
+- **Exception Handling**: If RD is unavailable, do not merge or deploy the port change. A temporary exception requires explicit human approval and MUST be captured in the PR notes.
+
 ## RD Edge Agent and RD MCP Use Policy
 - **Responsibility Split**: `rd-edge-agent/` is for local orchestration artifacts (task queues, scratchpad notes, MCP wiring). RD MCP is for programmatic integration/retrieval against RepoDepot services.
 - **Execution Policy**: RD MCP MUST NOT be used to replace local compile, lint, unit test, or integration test execution. Build/test must run through project-native tooling.
