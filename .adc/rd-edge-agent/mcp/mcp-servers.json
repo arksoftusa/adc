@@ -1,0 +1,20 @@
+{
+  "servers": [
+    {
+      "name": "rd-mcp",
+      "transport": "stdio",
+      "command": "D:\\Repos\\ARKSOFT\\RepoDepot\\.venv\\Scripts\\python.exe",
+      "args": [
+        "D:\\Repos\\ARKSOFT\\RepoDepot\\scripts\\repodepot\\rd-mcp-launch.py",
+        "--repo-root",
+        "D:\\Repos\\ARKSOFT\\RepoDepot",
+        "--env-path",
+        "D:\\Repos\\ARKSOFT\\ADC\\.env",
+        "--project-id-from-env"
+      ],
+      "cwd": "D:\\Repos\\ARKSOFT\\RepoDepot",
+      "autoStart": true,
+      "enabled": true
+    }
+  ]
+}
