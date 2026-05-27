@@ -1,6 +1,6 @@
 ---
 project-name: "Agentic Boilerplate Project"
-version: "1.0.0"
+version: "1.0.1"
 description: "A reusable starter template for consistent project structure and guidance."
 tech-stack:
   - React 18
