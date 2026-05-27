@@ -6,6 +6,8 @@
 
 ## Common Test and Software Quality Strategies
 - **Risk-Based Test Pyramid**: Prioritize many unit tests, targeted integration tests, and a small number of end-to-end smoke tests.
+- **Browser Testing Default**: For webpage-related projects, default browser-based testing, UI verification, and end-to-end page checks to the VS Code built-in browser and integrated browser tooling.
+- **External Browser Exception**: Use the Browser Agent external browser plugin only for exceptional scenarios that the VS Code built-in browser cannot reproduce or observe, and record the reason for the exception in the task notes or report.
 - **Branch Coverage Focus**: Measure branch coverage in addition to line coverage for critical logic and decision paths.
 - **Critical-Path Coverage Targets**: Apply stricter coverage expectations for security-sensitive and business-critical modules.
 - **Changed-Code Accountability**: New or modified behavior MUST include corresponding tests in the same change set.

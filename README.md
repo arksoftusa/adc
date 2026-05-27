@@ -1,9 +1,9 @@
 # Autonomous Development Constitution (ADC)
 
-**Version:** 1.1.19
+**Version:** 1.1.20
 **Status:** Published
 **Author:** Nate Scott
-**Date:** 2026-05-20
+**Date:** 2026-05-27
 
 ## 1. Introduction
 
@@ -112,7 +112,7 @@ This is the entry file for parsing the entire project context. It MUST contain s
 ```yaml
 ---
 project-name: "Your Project Name"
-version: "1.0.0"
+version: "1.0.1"
 description: "A concise description of the project's core business value."
 tech-stack:
   - React 18
