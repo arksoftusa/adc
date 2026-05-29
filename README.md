@@ -1,6 +1,6 @@
 # Autonomous Development Constitution (ADC)
 
-**Version:** 1.1.23
+**Version:** 1.1.24
 **Status:** Published
 **Author:** Nate Scott
 **Date:** 2026-05-29
@@ -240,6 +240,7 @@ This file establishes strict boundaries for where certain types of files must li
 - **Versioning Constraints (`.gitignore`)**: "A `.gitignore` file MUST exist at the root. AI assistants MUST automatically ignore common local cache, IDE configs, dependency folders (`node_modules`), logs, and compiled outputs unless explicitly instructed otherwise."
 - **CI/CD & Workflows (`.github/`)**: "All GitHub Actions, issue templates, and pull request templates MUST be centralized in the `.github/` directory. AI agents MUST respect and update these workflows when adding new deployment or testing stages."
 - **Push Protocol Fallback**: "Repository checkins should use HTTPS as the default push protocol. If HTTPS push fails due to transient credential or network issues, retry over SSH as the fallback path. This ensures build/test workflows remain unblocked while preserving protocol resiliency."
+- **Workspace Project Alignment**: "When an ADC update is intended to align all projects in the current workspace, agents MUST first inventory active workspace roots, read each project's ADC entry points and local AI instructions, preserve project-specific hard rules, and report included/excluded projects. Cross-project reusable rules belong in ADC templates and skills; direct edits to individual project ADC files require the matching onboard/update workflow or an explicit user request."
 - **Temporary Data**: "Any runtime logs, uploads, or temporary artifacts MUST be written to `src/log/` or `tmp/` respectively. Both paths MUST be explicitly added to `.gitignore`."
 - **Testing Separation**: "All automated tests MUST be placed in an isolated `tests/` directory at the project root. Tests should mirror the `src/` directory structure but must never be mixed within the application source files."
 

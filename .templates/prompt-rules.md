@@ -24,6 +24,7 @@
 - For webpage-related project testing and UI validation, default to the VS Code built-in browser and its integrated tooling.
 - Use the Browser Agent external browser plugin only in exceptional cases where the VS Code built-in browser cannot cover the scenario, and explicitly state the exception reason before using it.
 - Keep source logic in `src/`, scripts in `src/scripts/`, tests in `src/tests/`, and docs in `docs/`.
+- For workspace-wide ADC alignment, inventory active workspace project roots, read each project's ADC/Copilot entry points, preserve project-local hard rules, and report included/excluded projects before propagating reusable rules. Do not overwrite project-local ADC files unless the user explicitly requests per-project onboarding or update work.
 - Web visualization library policy: dynamic state-machine indicators, including metro-style operational status views, MUST use `d3-tube-map`; ordinary node/edge graph displays MUST use AntV or ECharts; 2.5D simulated 3D graph/network views MUST use `sigma`.
 - Use Python visualization stacks like PyViz/Holoviz/Panel/Bokeh only when the feature is primarily Python-driven and the application stack supports it.
 - Keep visualization toolchains consistent within a feature, expose chart data through JSON APIs, and implement interactive updates on the client whenever possible.

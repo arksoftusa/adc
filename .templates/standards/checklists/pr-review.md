@@ -10,3 +10,4 @@
 - [ ] Did I auto-update the Mermaid diagrams in `.adc/knowledge/diagrams/` to match my architectural modifications?
 - [ ] Are Docker CPU/Memory resource limits properly set as environment variables?
 - [ ] If ports were added, changed, reserved, or removed, did I update or verify the RD port registry and resolve conflicts?
+- [ ] If this ADC change aligns multiple workspace projects, did I inventory active project roots, preserve project-local hard rules, and report included/excluded projects?

@@ -19,10 +19,11 @@ In scope:
 1. Update ADC canonical documentation and templates.
 2. Propagate a rule into every generated downstream project surface.
 3. Update skill files that encode the workflow.
-4. Add or update amendment history.
-5. Bump README version/date for template or constitution changes.
-6. Add tests that prevent the rule from silently disappearing.
-7. Validate no stale contradictory wording remains.
+4. Assess current workspace project impact when the change is workspace-wide.
+5. Add or update amendment history.
+6. Bump README version/date for template or constitution changes.
+7. Add tests that prevent the rule from silently disappearing.
+8. Validate no stale contradictory wording remains.
 
 Out of scope:
 
@@ -38,6 +39,7 @@ Out of scope:
 - The user asks to update `.copilot/skills/*/SKILL.md` for an ADC workflow.
 - The user asks whether ADC guidance is sufficient and then wants it fixed.
 - A rule must appear in README, `.templates/`, generator output, prompt rules, amendments, checklists, and tests.
+- The user asks to align all current workspace projects through ADC governance.
 
 ## Do Not Use When
 
@@ -97,6 +99,14 @@ Do not update every file mechanically. Propagate only to surfaces where the rule
 - Identify whether it affects onboarding, updates, RD use, CPMD, CI/CD, frontend, testing, security, devops, or all projects.
 - Search for existing wording and contradictions before editing.
 - Preserve user-authored changes and unrelated dirty files.
+
+### 1a. Workspace Alignment Pass
+
+- If the user asks to align current workspace projects, inventory active workspace project roots first.
+- Read safe project entry points such as `.adc/index.md`, `.adc/prompt-rules.md`, and `.github/copilot-instructions.md` for each included project.
+- Preserve project-local hard rules such as language, TDD, security, runtime, deployment, ownership, and no-touch policies.
+- Propagate only reusable cross-project policy into ADC canonical surfaces; do not edit individual project ADC files unless the user explicitly requests per-project onboarding or update work.
+- Report included/excluded projects and project-specific exceptions.
 
 ### 2. Update Canonical Surfaces
 
@@ -162,6 +172,7 @@ Final output should include:
 - Version/amendment changes.
 - Tests or validation run.
 - Stale wording scan result.
+- Workspace projects inspected, included/excluded, and project-specific exceptions when alignment was requested.
 - Any unrelated dirty files intentionally ignored.
 
 Do not include token values, raw `.env` lines, private keys, or credential-bearing URLs.
