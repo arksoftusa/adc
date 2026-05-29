@@ -6,7 +6,7 @@ This file defines the terminology, abbreviations, and shortcuts used in this tem
 
 | Abbreviation | Full Term | Definition |
 |---|---|---|
-| **CPMD** | Checkin/Push/Merge/Deploy | Four-step git workflow: `git add -A`, `git commit -m "..."`, `git push origin main`, then deploy via CI/CD pipeline |
+| **CPMD** | Checkin/Push/Merge/Deploy | Release workflow: commit intended changes on a source branch, push that source branch, merge it into `main`, delete the merged source branch, then deploy via CI/CD pipeline |
 | **TDD** | Test-Driven Development | Development methodology: write failing tests first, then implement to pass, then refactor with tests passing |
 | **ADC** | Autonomous Development Constitution | Standardized framework for managing project governance, AI instructions, and developer context in `.adc/` folder |
 | **GHC** | GitHub Copilot | Standard abbreviation for GitHub Copilot in this project documentation and discussion |
@@ -58,8 +58,9 @@ This file defines the terminology, abbreviations, and shortcuts used in this tem
 | Term | Definition |
 |---|---|
 | **Commit** | Git snapshot of code changes with descriptive message |
-| **Push** | Send committed changes from local to remote repository (origin/main) |
-| **Merge** | Integrate changes from one branch into another; main branch is primary |
+| **Push** | Send committed changes from the local source branch to the remote repository |
+| **Merge** | Integrate the source branch into `main`; CPMD is not complete until the source branch is merged to `main` |
+| **Branch Cleanup** | Delete the merged CPMD source branch from the remote and local repository after merge to `main` |
 | **Deploy** | Release code to production via CI/CD pipeline triggered after push to main |
 | **origin/main** | Primary branch on remote repository; commits here trigger deployments |
 

@@ -1,6 +1,6 @@
 ---
 name: cpmd
-description: "Use when the user requests CPMD, CPMP, or checkin/push/merge/deploy for an ADC-managed project: validate changes, check in intended files, push to the remote branch, merge through the approved path, then deploy through the configured CI/CD pipeline. Keywords: CPMD, CPMP, checkin, check-in, commit, push, merge, deploy, CI/CD, Gitea, Coolify, Ares."
+description: "Use when the user requests CPMD, CPMP, or checkin/push/merge/deploy for an ADC-managed project: validate changes, check in intended files, push the source branch, merge it into main, delete the source branch, then deploy through the configured CI/CD pipeline. Keywords: CPMD, CPMP, checkin, check-in, commit, push, merge, branch cleanup, deploy, CI/CD, Gitea, Coolify, Ares."
 argument-hint: "project path, commit message, branch, deploy target"
 user-invocable: true
 disable-model-invocation: false
@@ -8,7 +8,7 @@ disable-model-invocation: false
 
 # CPMD
 
-Use this skill for the ADC workflow abbreviation **CPMD**: **Checkin/Push/Merge/Deploy**. ADC terminology defines CPMD as the four-step release workflow: check in changes, push them to the remote repository, merge them into the deployment branch, then deploy through the configured CI/CD pipeline.
+Use this skill for the ADC workflow abbreviation **CPMD**: **Checkin/Push/Merge/Deploy**. ADC terminology defines CPMD as the release workflow that checks in changes on a source branch, pushes that source branch, merges it into `main`, deletes the source branch, then deploys through the configured CI/CD pipeline.
 
 This skill is a workflow coordinator. For Ares deployments, use the deployment phase rules from the `ares-deployment` skill, especially the Gitea, Coolify, RepoDepot `.env`, SSH, monitoring, and secret-handling requirements.
 
@@ -19,10 +19,11 @@ Move an intended local change set from working tree to deployed environment with
 1. Validate the target repository, current branch, change set, and deployment target.
 2. Run the smallest meaningful verification required for the change.
 3. Check in only intended files with a clear commit.
-4. Push the commit to the configured remote.
-5. Merge through the project-approved path.
-6. Deploy through the configured CI/CD pipeline and verify the result.
-7. Report safe evidence: commit hash, source branch, merge target, deployment status, URL or health result, and any blocked step.
+4. Push the commit to the configured remote source branch.
+5. Merge the source branch into `main` through the project-approved path.
+6. Delete the merged source branch from the remote and local repository.
+7. Deploy through the configured CI/CD pipeline and verify the result.
+8. Report safe evidence: commit hash, source branch, merge target, branch deletion status, deployment status, URL or health result, and any blocked step.
 
 ## Use When
 
@@ -40,13 +41,16 @@ Move an intended local change set from working tree to deployed environment with
 
 ## ADC Definition and Policy
 
-ADC's template terminology defines CPMD as `Checkin/Push/Merge/Deploy`: `git add -A`, `git commit -m "..."`, `git push origin main`, then deploy via CI/CD.
+ADC's template terminology defines CPMD as `Checkin/Push/Merge/Deploy`: stage and commit intended changes on a source branch, push that source branch, merge it into `main`, delete the merged source branch, then deploy via CI/CD.
 
 Apply that definition through the active repository policy:
 
 - In ADC-managed repositories, direct commits or direct pushes to `main` are forbidden unless the local project's own instructions explicitly say otherwise.
 - Work should normally start on `dev/<scope>` or `hotfix/<scope>`.
-- Merge into `main` should happen through the reviewed PR or approved merge path.
+- CPMD merge target is always `main` for ADC-managed projects.
+- Merge into `main` must happen through the reviewed PR or approved merge path.
+- After successful merge into `main`, delete the merged source branch from the remote and local checkout. Do not delete `main` or protected long-lived branches.
+- If branch deletion is blocked by permissions, branch protection, or hosting policy, CPMD cleanup is incomplete; report the exact blocker and required human action.
 - Production deployment is normally triggered by changes reaching `main`; `dev/*` branches are staging or non-production unless configured differently.
 - If a non-ADC repository explicitly uses direct `origin/main` pushes, confirm the target before using the glossary shorthand literally.
 
@@ -89,13 +93,20 @@ Before modifying git state or triggering deployment:
 
 ### 3. Merge
 
-- Follow the repository's approved merge path into the deployment branch, usually `main`.
+- Follow the repository's approved merge path into `main`.
 - For ADC-managed projects, prefer a reviewed PR or the configured Gitea/GitHub merge workflow.
 - Do not bypass required checks, reviews, branch protection, or policy checklists.
 - If automation cannot perform the required reviewed merge, stop after push and report the exact PR/merge gate that needs human action.
 - Capture the merged commit SHA or merge request/PR identifier when available.
 
-### 4. Deploy
+### 4. Branch Cleanup
+
+- After the source branch is merged into `main`, delete the remote source branch.
+- Delete the local source branch after confirming the current checkout is no longer on that branch.
+- Do not delete `main`, release branches, protected long-lived branches, or branches outside the CPMD source branch.
+- If cleanup cannot be completed automatically, report the source branch, remote deletion status, local deletion status, and exact blocker.
+
+### 5. Deploy
 
 - Let the configured CI/CD pipeline deploy after the target branch update.
 - For Ares deployments, follow the `ares-deployment` skill: use Gitea push events, Coolify webhook/API fallback, RepoDepot `.env` values loaded without printing secrets, and low-frequency deployment monitoring.
@@ -118,6 +129,7 @@ Before modifying git state or triggering deployment:
 - Commit failure: inspect staged files, hooks, and identity configuration.
 - Push failure: inspect branch tracking, auth state, branch protection, and remote availability.
 - Merge blocked: report the failed gate, required review, or CI failure without bypassing it.
+- Branch cleanup blocked: report whether remote deletion, local deletion, or both are blocked; include the source branch name and required human action.
 - Deploy blocked: report the missing non-secret configuration key, unavailable CI/CD target, or failing phase.
 - Runtime health failure: check public URL, health endpoint, container status, image/container identifiers, and recent non-secret status fields.
 
@@ -131,6 +143,7 @@ Report only safe, useful facts:
 - Commit SHA.
 - Push remote and branch, with credentials redacted if mentioned at all.
 - Merge target and PR/merge status.
+- Branch deletion status for both remote source branch and local source branch.
 - Deployment target, status, URL or health-check result.
 - Any blocked step and the exact human action needed.
 
@@ -138,4 +151,4 @@ Do not include token values, raw `.env` lines, private keys, raw deployment logs
 
 ## Success Criteria
 
-CPMD is complete when the intended change set is committed, pushed, merged through the approved path, deployed through the configured CI/CD pipeline, and verified with a passing health check or equivalent deployment evidence.
+CPMD is complete when the intended change set is committed, pushed, merged into `main` through the approved path, the merged source branch is deleted remotely and locally, deployment completes through the configured CI/CD pipeline, and the deployed result is verified with a passing health check or equivalent deployment evidence.
