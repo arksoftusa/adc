@@ -224,6 +224,12 @@ curl http://192.168.1.240:18080/health
 - **Network Policy**: Shared RD services are expected on `http://192.168.1.240` endpoints during local integration; upstream RepoDepot access MUST use the configured upstream URL and approved credentials only.
 - **Secret Policy**: Tokens and project identifiers (`RD_MCP_TOKEN`, `RD_EDGE_AGENT_TOKEN`, `RD_PROJECT_ID`) MUST be injected via environment variables and never committed to repository files.
 - **Change Policy**: Any PR changing RD integration behavior MUST update both `bootstrap.md` and `mcp-servers.json`, and include validation notes.
+
+## Toolchain Verification Policy
+- **Install Or Activate Missing Tools**: If a required validation tool is missing from `PATH`, agents MUST first try to locate and activate an existing installation before skipping the validation. On Windows, use Visual Studio discovery such as `vswhere` to locate tools like `dumpbin.exe`.
+- **Install When Absent**: If the tool is not installed and the environment permits installation, install the required toolchain, such as Visual Studio Build Tools with the C++ build tools workload for `dumpbin`, then rerun the validation.
+- **No Premature Validation Waiver**: Do not report validation as unavailable merely because the current shell lacks the command. A waiver is allowed only after locate/activation and install attempts fail, and the final report MUST include what was attempted and why it remained blocked.
+- **Binary Release Evidence**: For portable or compiled release artifacts, dependency inspection tools such as `dumpbin /dependents` on Windows or the platform equivalent SHOULD be run when they are needed to prove runtime dependency claims.
 '@;
 
     "conventions\frontend.md" = @'

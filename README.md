@@ -1,9 +1,9 @@
 # Autonomous Development Constitution (ADC)
 
-**Version:** 1.1.22
+**Version:** 1.1.23
 **Status:** Published
 **Author:** Nate Scott
-**Date:** 2026-05-28
+**Date:** 2026-05-29
 
 ## 1. Introduction
 
@@ -222,6 +222,7 @@ When an AI assistant is asked to write Dockerfiles, `docker-compose.yml`, or CI/
 **Example constraints to include:**
 - **RD Port Registry**: "Every ADC-managed project MUST register every owned, exposed, or reserved port in RepoDepot before the port is used. Registrations MUST include project ID, environment, service name, protocol, bind host/interface, host port, container/internal port, purpose, exposure scope, source configuration path, owner, and last verified date. No new or changed port may be introduced until RD confirms that the port is available for the target environment. Dynamic port ranges must be registered with their allocation rules, and stale registrations must be retired when ports are removed."
 - **CPMD Branch Closure**: "Every CPMD source branch MUST merge into `main` through the approved path. After successful merge, the source branch MUST be deleted from the remote and local repository before CPMD is considered complete. If merge or branch deletion is blocked, report the blocker and required human action instead of treating deployment as complete."
+- **Toolchain Verification**: "When a release or binary validation step needs a local tool such as `dumpbin`, the agent MUST install the required toolchain or activate an existing installation, for example Visual Studio Build Tools through `vswhere`, before claiming the validation cannot be performed. Skipping validation is allowed only after installation or activation fails and the failure is documented."
 - **Resource Limits**: "All Docker containers MUST be created with CPU and Memory limits (e.g., `--memory=\"512m\" --cpus=\"1.0\"`)."
 - **Parameter Passing**: "Resource limits MUST be passed dynamically to the container via environment variables or Orchestration tools, never hardcoded in scripts."
 - **Base Images**: "You MUST ONLY use Alpine or specific distroless images from our official repository. Never use `:latest`."
