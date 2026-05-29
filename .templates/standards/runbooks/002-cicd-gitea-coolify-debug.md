@@ -17,6 +17,9 @@ Define before setup:
 - Environment policy:
   - `main -> production`
   - `dev/* -> non-prod/staging`
+- CPMD policy:
+  - source branch must merge into `main`
+  - merged source branch must be deleted remotely and locally
 
 ## 3. Required Secrets and Environment Variables
 Store in secure runtime configuration and never commit to Git:
@@ -71,6 +74,7 @@ Execute once per app:
 ### Step A: Verify Git state
 - Confirm latest commit exists on remote target branch.
 - Confirm push branch matches deployment branch policy.
+- For CPMD, confirm the source branch has been merged into `main` and deleted from the remote after merge.
 
 ### Step B: Verify Coolify app config
 - Correct repo is bound.
@@ -115,4 +119,5 @@ Before go-live:
 3. Confirm deployed commit SHA matches pushed SHA.
 4. Confirm health checks pass.
 5. Confirm rollback path has been tested.
-6. Document branch policy, webhook URL, and secret ownership in operations docs.
+6. Confirm CPMD branch cleanup policy is documented and enforced for source branches.
+7. Document branch policy, webhook URL, and secret ownership in operations docs.

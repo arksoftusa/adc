@@ -154,6 +154,7 @@ curl http://192.168.1.240:18080/health
 - Do not commit secrets, tokens, or private keys.
 - All Docker commands must use remote daemon `tcp://192.168.1.240:2375` via `DOCKER_HOST`.
 - Never commit directly to `main`; use a `dev/*` branch and merge through review.
+- For CPMD, merge the source branch into `main` and delete the merged source branch remotely and locally before considering the workflow complete.
 
 ## RD Use Policy
 - Use `rd-edge-agent/` for local task orchestration and session context only.
@@ -197,6 +198,8 @@ curl http://192.168.1.240:18080/health
 - **No Direct Check-In to `main`**: Direct commits or direct pushes to the `main` branch are forbidden.
 - **Required Development Branch**: All code check-ins MUST be performed on a dedicated development branch named `dev/<scope>` (or `dev/<scope>-<ticket>`).
 - **Merge Path**: Changes MUST be merged into `main` only through a reviewed Pull Request.
+- **CPMD Main Merge Requirement**: Every CPMD source branch MUST be merged into `main`; deployment from an unmerged `dev/*`, `hotfix/*`, or feature branch does not satisfy CPMD.
+- **CPMD Branch Cleanup Requirement**: After successful merge into `main`, the CPMD source branch MUST be deleted from the remote and local repository. If deletion is blocked, the CPMD result MUST report cleanup as blocked with the exact source branch and required human action.
 - **Pre-Merge Gates**: Required CI checks and policy checklist validation MUST pass before merge.
 - **Hotfix Exception**: Emergency hotfixes may use `hotfix/<scope>` branches, but direct commits to `main` are still forbidden.
 

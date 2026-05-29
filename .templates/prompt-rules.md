@@ -31,6 +31,7 @@
 - Do not commit secrets, tokens, or private keys.
 - All Docker commands must use remote daemon `tcp://192.168.1.240:2375` via `DOCKER_HOST`.
 - Never commit directly to `main`; use a `dev/*` branch and merge through review.
+- For CPMD, merge the source branch into `main` and delete the merged source branch remotely and locally before considering the workflow complete.
 - If `.env` contains `CICD=enabled` and both `GITEA_TOKEN` + `COOLIFY_API_TOKEN`, ask for explicit human confirmation before initializing CI/CD wiring.
 
 ## RD Use Policy

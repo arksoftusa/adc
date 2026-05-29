@@ -95,6 +95,30 @@ def test_devops_convention_has_cicd_gitea_coolify_policy() -> None:
         assert entry in content
 
 
+def test_cpmd_branch_closure_policy_is_required_across_templates() -> None:
+    devops = _read(".templates/standards/conventions/devops.md")
+    prompt_rules = _read(".templates/prompt-rules.md")
+    terminology = _read(".templates/knowledge/terminology.md")
+    pr_template = _read(".templates/.github/pull_request_template.md")
+    pr_checklist = _read(".templates/standards/checklists/pr-review.md")
+    cpmd_skill = _read(".copilot/skills/cpmd/SKILL.md")
+    generator = _read("src/scripts/generate-adc-template.ps1")
+
+    required_entries = [
+        "Every CPMD source branch MUST be merged into `main`",
+        "deleted from the remote and local repository",
+    ]
+    for entry in required_entries:
+        assert entry in devops
+        assert entry in generator
+
+    assert "merge the source branch into `main` and delete the merged source branch remotely and locally" in prompt_rules
+    assert "merge it into `main`, delete the merged source branch" in terminology
+    assert "merged into `main` and deleted remotely and locally" in pr_template
+    assert "merge into `main` and be deleted remotely and locally" in pr_checklist
+    assert "merged into `main` through the approved path" in cpmd_skill
+
+
 def test_rd_port_registry_policy_is_required_across_templates() -> None:
     devops = _read(".templates/standards/conventions/devops.md")
     prompt_rules = _read(".templates/prompt-rules.md")

@@ -4,6 +4,8 @@
 - **No Direct Check-In to `main`**: Direct commits or direct pushes to the `main` branch are forbidden.
 - **Required Development Branch**: All code check-ins MUST be performed on a dedicated development branch named `dev/<scope>` (or `dev/<scope>-<ticket>`).
 - **Merge Path**: Changes MUST be merged into `main` only through a reviewed Pull Request.
+- **CPMD Main Merge Requirement**: Every CPMD source branch MUST be merged into `main`; deployment from an unmerged `dev/*`, `hotfix/*`, or feature branch does not satisfy CPMD.
+- **CPMD Branch Cleanup Requirement**: After successful merge into `main`, the CPMD source branch MUST be deleted from the remote and local repository. If deletion is blocked, the CPMD result MUST report cleanup as blocked with the exact source branch and required human action.
 - **Pre-Merge Gates**: Required CI checks and policy checklist validation MUST pass before merge.
 - **Hotfix Exception**: Emergency hotfixes may use `hotfix/<scope>` branches, but direct commits to `main` are still forbidden.
 
@@ -47,6 +49,7 @@
 - Deployment target MUST include Coolify app name and app UUID.
 - Production deployment branch is `main` unless explicitly overridden.
 - Branch policy: `main -> production`, `dev/* -> staging/non-prod`.
+- CPMD policy: source branches merge into `main`, then the merged source branch is deleted before CPMD is considered complete.
 
 ### Trigger and Fallback Model
 - Preferred mode is **Webhook-driven auto deploy** on push events for target branch.

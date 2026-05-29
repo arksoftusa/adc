@@ -1,6 +1,6 @@
 # Autonomous Development Constitution (ADC)
 
-**Version:** 1.1.21
+**Version:** 1.1.22
 **Status:** Published
 **Author:** Nate Scott
 **Date:** 2026-05-28
@@ -221,6 +221,7 @@ When an AI assistant is asked to write Dockerfiles, `docker-compose.yml`, or CI/
 - Note: Docker manifests now live under `src/` instead of the repository root.
 **Example constraints to include:**
 - **RD Port Registry**: "Every ADC-managed project MUST register every owned, exposed, or reserved port in RepoDepot before the port is used. Registrations MUST include project ID, environment, service name, protocol, bind host/interface, host port, container/internal port, purpose, exposure scope, source configuration path, owner, and last verified date. No new or changed port may be introduced until RD confirms that the port is available for the target environment. Dynamic port ranges must be registered with their allocation rules, and stale registrations must be retired when ports are removed."
+- **CPMD Branch Closure**: "Every CPMD source branch MUST merge into `main` through the approved path. After successful merge, the source branch MUST be deleted from the remote and local repository before CPMD is considered complete. If merge or branch deletion is blocked, report the blocker and required human action instead of treating deployment as complete."
 - **Resource Limits**: "All Docker containers MUST be created with CPU and Memory limits (e.g., `--memory=\"512m\" --cpus=\"1.0\"`)."
 - **Parameter Passing**: "Resource limits MUST be passed dynamically to the container via environment variables or Orchestration tools, never hardcoded in scripts."
 - **Base Images**: "You MUST ONLY use Alpine or specific distroless images from our official repository. Never use `:latest`."
@@ -264,6 +265,7 @@ To achieve portability for AI agents, the project can ship with its own toolsets
 - **Workspace Rule**: "Use `.adc/rd-edge-agent/tasks/` and `.adc/rd-edge-agent/scratchpad/` for orchestration state only. Canonical requirements and architecture decisions MUST remain in planning/standards/knowledge files."
 - **Execution Rule**: "MCP integrations are for retrieval/indexing and external context operations. Local build/test/deploy execution MUST remain on native project tooling."
 - **Secret Rule**: "Credentials MUST be injected through environment variables and MUST NOT be committed in tracked files."
+- **RD Onboarding Rule**: "Before a project uses RepoDepot context, indexing, project secrets, or MCP tools, follow `.adc/standards/runbooks/003-rd-project-onboarding-mcp.md`: confirm the RD project record, create a missing project key only through first-contact bootstrap, store the project-scoped key as `RD_PROJECT_API_KEY_<PROJECT_ID_SUFFIX>`, configure the RepoDepot MCP launcher through the project's ignored `.env`, and verify project-scoped access before indexing."
 
 ### 3.20 `checklists/` (Autonomous Pre-Flight Checks)
 For autonomous workflows, deterministic checklists prevent AI from cutting corners.
