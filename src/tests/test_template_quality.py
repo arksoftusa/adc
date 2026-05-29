@@ -24,6 +24,31 @@ def test_prompt_rules_has_core_quality_sections() -> None:
         assert section in content
 
 
+def test_frontend_visualization_library_policy_is_required_across_templates() -> None:
+    frontend = _read(".templates/standards/conventions/frontend.md")
+    prompt_rules = _read(".templates/prompt-rules.md")
+    generator = _read("src/scripts/generate-adc-template.ps1")
+    readme = _read("README.md")
+
+    required_frontend_entries = [
+        "## Web Visualization Library Policy",
+        "Dynamic state-machine indicators",
+        "d3-tube-map",
+        "AntV or ECharts",
+        "2.5D simulated 3D",
+        "sigma",
+    ]
+
+    for entry in required_frontend_entries:
+        assert entry in frontend
+
+    for content in [prompt_rules, generator, readme]:
+        assert "d3-tube-map" in content
+        assert "AntV or ECharts" in content
+        assert "2.5D simulated 3D" in content
+        assert "sigma" in content
+
+
 def test_security_convention_has_patch_and_update_strategies() -> None:
     content = _read(".templates/standards/conventions/security.md")
 

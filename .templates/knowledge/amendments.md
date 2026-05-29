@@ -7,3 +7,4 @@
 - **2026-04-19**: Added graph-first execution protocol, impact analysis requirement, and standardized output protocol for `{SYSTEM_NAME}`-integrated AI assistants.
 - **2026-05-17**: Added RD port registry policy requiring every ADC-managed project to register owned, exposed, or reserved ports in RepoDepot before use, with conflict checks and PR validation.
 - **2026-05-27**: Added browser testing policy requiring webpage-related projects to default to the VS Code built-in browser, with Browser Agent external browser usage limited to documented exceptional cases.
+- **2026-05-28**: Added frontend visualization library policy requiring `d3-tube-map` for dynamic metro-style state-machine indicators, AntV or ECharts for ordinary node/edge displays, and `sigma` for 2.5D simulated 3D graph views.

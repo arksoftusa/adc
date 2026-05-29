@@ -149,6 +149,8 @@ curl http://192.168.1.240:18080/health
 ## Repository and Workflow Rules
 - For new features, write tests first.
 - Keep source logic in `src/`, scripts in `src/scripts/`, tests in `src/tests/`, and docs in `docs/`.
+- Web visualization library policy: dynamic state-machine indicators, including metro-style operational status views, MUST use `d3-tube-map`; ordinary node/edge graph displays MUST use AntV or ECharts; 2.5D simulated 3D graph/network views MUST use `sigma`.
+- Use Python visualization stacks like PyViz/Holoviz/Panel/Bokeh only when the feature is primarily Python-driven and the application stack supports it.
 - Do not commit secrets, tokens, or private keys.
 - All Docker commands must use remote daemon `tcp://192.168.1.240:2375` via `DOCKER_HOST`.
 - Never commit directly to `main`; use a `dev/*` branch and merge through review.
@@ -219,6 +221,17 @@ curl http://192.168.1.240:18080/health
 - **Network Policy**: Shared RD services are expected on `http://192.168.1.240` endpoints during local integration; upstream RepoDepot access MUST use the configured upstream URL and approved credentials only.
 - **Secret Policy**: Tokens and project identifiers (`RD_MCP_TOKEN`, `RD_EDGE_AGENT_TOKEN`, `RD_PROJECT_ID`) MUST be injected via environment variables and never committed to repository files.
 - **Change Policy**: Any PR changing RD integration behavior MUST update both `bootstrap.md` and `mcp-servers.json`, and include validation notes.
+'@;
+
+    "conventions\frontend.md" = @'
+# Frontend Conventions
+
+## Web Visualization Library Policy
+- **Dynamic State-Machine Indicators**: Dynamic state-machine indicators in all webpage projects, including metro-style operational status views, MUST use `d3-tube-map`.
+- **Ordinary Node/Edge Displays**: Plain node/edge graph displays MUST use AntV or ECharts.
+- **2.5D Simulated 3D Views**: 2.5D simulated 3D network, topology, or graph views MUST use `sigma`.
+- **Toolchain Consistency**: Keep visualization toolchains consistent within a feature and avoid mixing libraries for the same visual surface unless the project owner explicitly approves an exception.
+- **Dependency Authorization**: If one of these approved libraries is not already present in the project, adding it still requires the normal third-party dependency authorization flow.
 '@;
 
     "known-issues.md" = @'
@@ -381,7 +394,7 @@ foreach ($key in $Files.Keys) {
 # Create empty structural placeholders to demonstrate full tree scope
 $EmptyFiles = @(
     "project-roadmap.md", "development-phases.md", "glossary.md",
-    "conventions\structure.md", "conventions\frontend.md", "conventions\backend.md",
+    "conventions\structure.md", "conventions\backend.md",
     "conventions\data-engineering.md",
     "adr\001-why-we-use-redis.md", "skills\sample-skill\SKILL.md"
 )

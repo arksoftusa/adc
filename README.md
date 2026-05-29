@@ -1,9 +1,9 @@
 # Autonomous Development Constitution (ADC)
 
-**Version:** 1.1.20
+**Version:** 1.1.21
 **Status:** Published
 **Author:** Nate Scott
-**Date:** 2026-05-27
+**Date:** 2026-05-28
 
 ## 1. Introduction
 
@@ -145,6 +145,11 @@ By defining a domain glossary, AI assistants will be significantly more accurate
 ### 3.4 `conventions/` (Domain-Specific Conventions)
 To prevent overwhelming the AI's context window with irrelevant information, massive documentation files are split by domain.
 Instead of providing the entire documentation at once, the AI can load these files on-demand. For instance, if the AI is tasked with updating the UI, it only needs to read `.adc/standards/conventions/frontend.md`, saving tokens and focusing its attention purely on frontend constraints.
+
+Frontend visualization policy for webpage projects MUST be captured in `.adc/standards/conventions/frontend.md`:
+- Dynamic state-machine indicators, including metro-style operational status views, MUST use `d3-tube-map`.
+- Plain node/edge graph displays MUST use AntV or ECharts.
+- 2.5D simulated 3D graph, network, or topology views MUST use `sigma`.
 
 ### 3.5 `skills/` (Actionable AI Skills)
 To evolve the AI from merely "understanding static rules" to "executing complex project-specific actions," ADC introduces the `skills/` directory.
