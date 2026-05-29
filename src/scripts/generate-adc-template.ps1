@@ -149,6 +149,7 @@ curl http://192.168.1.240:18080/health
 ## Repository and Workflow Rules
 - For new features, write tests first.
 - Keep source logic in `src/`, scripts in `src/scripts/`, tests in `src/tests/`, and docs in `docs/`.
+- For workspace-wide ADC alignment, inventory active workspace project roots, read each project's ADC/Copilot entry points, preserve project-local hard rules, and report included/excluded projects before propagating reusable rules. Do not overwrite project-local ADC files unless the user explicitly requests per-project onboarding or update work.
 - Web visualization library policy: dynamic state-machine indicators, including metro-style operational status views, MUST use `d3-tube-map`; ordinary node/edge graph displays MUST use AntV or ECharts; 2.5D simulated 3D graph/network views MUST use `sigma`.
 - Use Python visualization stacks like PyViz/Holoviz/Panel/Bokeh only when the feature is primarily Python-driven and the application stack supports it.
 - Do not commit secrets, tokens, or private keys.
@@ -230,6 +231,20 @@ curl http://192.168.1.240:18080/health
 - **Install When Absent**: If the tool is not installed and the environment permits installation, install the required toolchain, such as Visual Studio Build Tools with the C++ build tools workload for `dumpbin`, then rerun the validation.
 - **No Premature Validation Waiver**: Do not report validation as unavailable merely because the current shell lacks the command. A waiver is allowed only after locate/activation and install attempts fail, and the final report MUST include what was attempted and why it remained blocked.
 - **Binary Release Evidence**: For portable or compiled release artifacts, dependency inspection tools such as `dumpbin /dependents` on Windows or the platform equivalent SHOULD be run when they are needed to prove runtime dependency claims.
+'@;
+
+    "conventions\structure.md" = @'
+# Project Structure & Layout Conventions
+
+## Workspace Project Alignment
+
+When a user asks to align all projects in the current workspace, agents MUST treat the workspace as a set of independent project roots, not as one monorepo.
+
+- **Workspace Inventory**: Agents must inventory active workspace project roots and report which projects were included or excluded from the alignment pass.
+- **Safe Entry-Point Review**: Read each included project's ADC entry points and local AI instructions, such as `.adc/index.md`, `.adc/prompt-rules.md`, and `.github/copilot-instructions.md`, while respecting `.adcignore` and secret-handling rules.
+- **Preserve Local Hard Rules**: Agents must preserve project-local hard rules, including language, TDD, security, runtime, deployment, ownership, and no-touch rules, even when ADC templates evolve.
+- **Shared Versus Local Scope**: Put reusable cross-project policy in ADC templates, standards, skills, and generator output; do not edit individual project ADC files unless the user explicitly requests per-project onboarding or update work.
+- **Alignment Report**: Final reports for workspace alignment MUST list the projects inspected, the common rule being aligned, project-specific exceptions, validation performed, and follow-up actions.
 '@;
 
     "conventions\frontend.md" = @'

@@ -71,6 +71,16 @@ All supplementary bash, Python, or Node.js scripts for building, deploying, or l
 - If HTTPS push fails due to transient auth/network issues, SSH is the required fallback.
 - Teams SHOULD avoid protocol switching outside this order unless a maintainer approves an exception in the same change set.
 
+## Workspace Project Alignment
+
+When a user asks to align all projects in the current workspace, agents MUST treat the workspace as a set of independent project roots, not as one monorepo.
+
+- **Workspace Inventory**: Agents must inventory active workspace project roots and report which projects were included or excluded from the alignment pass.
+- **Safe Entry-Point Review**: Read each included project's ADC entry points and local AI instructions, such as `.adc/index.md`, `.adc/prompt-rules.md`, and `.github/copilot-instructions.md`, while respecting `.adcignore` and secret-handling rules.
+- **Preserve Local Hard Rules**: Agents must preserve project-local hard rules, including language, TDD, security, runtime, deployment, ownership, and no-touch rules, even when ADC templates evolve.
+- **Shared Versus Local Scope**: Put reusable cross-project policy in ADC templates, standards, skills, and generator output; do not edit individual project ADC files unless the user explicitly requests per-project onboarding or update work.
+- **Alignment Report**: Final reports for workspace alignment MUST list the projects inspected, the common rule being aligned, project-specific exceptions, validation performed, and follow-up actions.
+
 ## Documentation
 
 - `docs/` — All user-facing, API, and project documentation

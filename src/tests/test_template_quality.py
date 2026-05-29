@@ -118,6 +118,33 @@ def test_devops_toolchain_verification_policy_is_required_across_templates() -> 
     assert "install the required toolchain or activate an existing installation" in readme
 
 
+def test_workspace_project_alignment_policy_is_required_across_templates() -> None:
+    structure = _read(".templates/standards/conventions/structure.md")
+    prompt_rules = _read(".templates/prompt-rules.md")
+    generator = _read("src/scripts/generate-adc-template.ps1")
+    readme = _read("README.md")
+    pr_checklist = _read(".templates/standards/checklists/pr-review.md")
+    adc_update_skill = _read(".copilot/skills/adc-update/SKILL.md")
+
+    required_entries = [
+        "## Workspace Project Alignment",
+        "inventory active workspace project roots",
+        "preserve project-local hard rules",
+        "included or excluded",
+        "do not edit individual project ADC files unless the user explicitly requests",
+    ]
+
+    for entry in required_entries:
+        assert entry in structure
+        assert entry in generator
+
+    assert "For workspace-wide ADC alignment" in prompt_rules
+    assert "For workspace-wide ADC alignment" in generator
+    assert "Workspace Project Alignment" in readme
+    assert "inventory active project roots" in pr_checklist
+    assert "Workspace Alignment Pass" in adc_update_skill
+
+
 def test_cpmd_branch_closure_policy_is_required_across_templates() -> None:
     devops = _read(".templates/standards/conventions/devops.md")
     prompt_rules = _read(".templates/prompt-rules.md")
