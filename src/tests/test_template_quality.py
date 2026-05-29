@@ -95,6 +95,29 @@ def test_devops_convention_has_cicd_gitea_coolify_policy() -> None:
         assert entry in content
 
 
+def test_devops_toolchain_verification_policy_is_required_across_templates() -> None:
+    devops = _read(".templates/standards/conventions/devops.md")
+    generator = _read("src/scripts/generate-adc-template.ps1")
+    readme = _read("README.md")
+
+    required_entries = [
+        "## Toolchain Verification Policy",
+        "If a required validation tool is missing from `PATH`",
+        "Visual Studio discovery such as `vswhere`",
+        "dumpbin.exe",
+        "install the required toolchain",
+        "Do not report validation as unavailable merely because the current shell lacks the command",
+        "dumpbin /dependents",
+    ]
+
+    for entry in required_entries:
+        assert entry in devops
+        assert entry in generator
+
+    assert "Toolchain Verification" in readme
+    assert "install the required toolchain or activate an existing installation" in readme
+
+
 def test_cpmd_branch_closure_policy_is_required_across_templates() -> None:
     devops = _read(".templates/standards/conventions/devops.md")
     prompt_rules = _read(".templates/prompt-rules.md")

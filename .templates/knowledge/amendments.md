@@ -9,3 +9,4 @@
 - **2026-05-27**: Added browser testing policy requiring webpage-related projects to default to the VS Code built-in browser, with Browser Agent external browser usage limited to documented exceptional cases.
 - **2026-05-28**: Added frontend visualization library policy requiring `d3-tube-map` for dynamic metro-style state-machine indicators, AntV or ECharts for ordinary node/edge displays, and `sigma` for 2.5D simulated 3D graph views.
 - **2026-05-28**: Added CPMD branch closure policy requiring every CPMD source branch to merge into `main` and then be deleted remotely and locally before CPMD is complete.
+- **2026-05-29**: Added toolchain verification policy requiring agents to locate, activate, or install missing validation tools such as Windows `dumpbin` before waiving release/binary dependency checks.
